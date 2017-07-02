@@ -8,21 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>通过 Zabbix 实现 Logstash 的监控 | ITSYC&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Table of Contents   1. 参考内容     参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。 由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安">
+  <meta name="description" content="Table of Contents   1. 参考内容     参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。    Logstash Pipeline 模型     由于 logstash-output-zabbix 插件不是 Logs">
 <meta name="keywords" content="zabbix,logstash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过 Zabbix 实现 Logstash 的监控">
 <meta property="og:url" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/index.html">
 <meta property="og:site_name" content="ITSYC&#39;s Blog">
-<meta property="og:description" content="Table of Contents   1. 参考内容     参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。 由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安">
+<meta property="og:description" content="Table of Contents   1. 参考内容     参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。    Logstash Pipeline 模型     由于 logstash-output-zabbix 插件不是 Logs">
+<meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/logstash-pipeline.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/zabbix-host.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/zabbix-logstash-item.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/logstash-tps-graph.png">
-<meta property="og:updated_time" content="2017-07-02T04:23:03.000Z">
+<meta property="og:updated_time" content="2017-07-02T15:20:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过 Zabbix 实现 Logstash 的监控">
-<meta name="twitter:description" content="Table of Contents   1. 参考内容     参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。 由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安">
-<meta name="twitter:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/zabbix-host.png">
+<meta name="twitter:description" content="Table of Contents   1. 参考内容     参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。    Logstash Pipeline 模型     由于 logstash-output-zabbix 插件不是 Logs">
+<meta name="twitter:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/logstash-pipeline.png">
   
     <link rel="alternative" href="/atom.xml" title="ITSYC&#39;s Blog" type="application/atom+xml">
   
@@ -198,12 +199,21 @@
 
 <p>
 由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。
+</p>
+
+<p>
+<b>Logstash Pipeline</b> 模型
+<img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./logstash-pipeline.png" alt="logstash-pipeline.png">
+</p>
+
+<p>
 由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安装方式非常简单[参考：<a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="external">zabbix|Logstash</a> ]：
 </p>
 
-<pre class="example">
-$ bin/logstash-plugin install logstash-output-zabbix
-</pre>
+<div class="org-src-container">
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ bin/logstash-plugin install logstash-output-zabbix</span><br></pre></td></tr></table></figure>
+</div>
 
 <p>
 配置 Zabbix 的数据采集：
@@ -231,36 +241,10 @@ $ bin/logstash-plugin install logstash-output-zabbix
 <p>
 修改 logstash 的配置文件，增加 metrics filter 和 zabbix output：
 </p>
-<pre class="example">
-input {
-  ...
-}
+<div class="org-src-container">
 
-filter {
-  ...
-
-  metrics {
-    meter =&gt; "events"  # 统计每一个经过 filter 的事件
-    add_tag =&gt; "metric"
-    add_field =&gt; {"[@metadata][zabbix_key]" =&gt; "logstash_events"}  # zabbix item 的 key，这个要和 zabbix 的配置一致
-    add_field =&gt; { "[@metadata][zabbix_host]" =&gt; "logstash-indexer-1" }  # zabbix 写入的主机
-    flush_interval =&gt; 10  # 每隔 10s 写一次
-  }
-}
-
-output {
-  ...
-
-  if "metric" in [tags] {
-    zabbix {
-      zabbix_server_host =&gt; "192.168.56.113"
-      zabbix_host =&gt; "[@metadata][zabbix_host]"
-      zabbix_key =&gt; "[@metadata][zabbix_key]"
-      zabbix_value =&gt; "[events][count]"  # [events][count] 是事件统计数据，还有其他字段内容，具体参考官网文档
-    }
-  }
-}
-</pre>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">input {</span><br><span class="line">  ...</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">filter {</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  metrics {</span><br><span class="line">    meter =&gt; <span class="string">"events"</span>  <span class="comment"># 统计每一个经过 filter 的事件</span></span><br><span class="line">    add_tag =&gt; <span class="string">"metric"</span></span><br><span class="line">    add_field =&gt; {<span class="string">"[@metadata][zabbix_key]"</span> =&gt; <span class="string">"logstash_events"</span>}  <span class="comment"># zabbix item 的 key，这个要和 zabbix 的配置一致</span></span><br><span class="line">    add_field =&gt; { <span class="string">"[@metadata][zabbix_host]"</span> =&gt; <span class="string">"logstash-indexer-1"</span> }  <span class="comment"># zabbix 写入的主机</span></span><br><span class="line">    flush_interval =&gt; <span class="number">10</span>  <span class="comment"># 每隔 10s 写一次</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">output {</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="string">"metric"</span> <span class="keyword">in</span> [tags] {</span><br><span class="line">    zabbix {</span><br><span class="line">      zabbix_server_host =&gt; <span class="string">"192.168.56.113"</span></span><br><span class="line">      zabbix_host =&gt; <span class="string">"[@metadata][zabbix_host]"</span></span><br><span class="line">      zabbix_key =&gt; <span class="string">"[@metadata][zabbix_key]"</span></span><br><span class="line">      zabbix_value =&gt; <span class="string">"[events][count]"</span>  <span class="comment"># [events][count] 是事件统计数据，还有其他字段内容，具体参考官网文档</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
 <p>
 配置好 logstash 后，reload 配置或重启服务即可。
 具体配置参考官方文档说明。
@@ -285,7 +269,7 @@ output {
 
 <p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-27 Thu 10:12&gt;</span></span></p>
 <p class="author">Author: Yang Chuang</p>
-<p class="date">Created: 2017-07-02 Sun 12:23</p>
+<p class="date">Created: 2017-07-02 Sun 23:36</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 
@@ -517,6 +501,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">emacs</a>
               </li>
              
@@ -526,10 +514,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elasticsearch</a>
               </li>
              
               <li class="article-tag-list-item">
