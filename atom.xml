@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-30T13:00:19.000Z</updated>
+  <updated>2017-07-02T04:23:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/"/>
     <id>http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/</id>
     <published>2017-06-27T02:12:00.000Z</published>
-    <updated>2017-06-30T13:00:19.000Z</updated>
+    <updated>2017-07-02T04:23:03.000Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -125,7 +125,7 @@ output {
 
 <p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-27 Thu 10:12&gt;</span></span></p>
 <p class="author">Author: Yang Chuang</p>
-<p class="date">Created: 2017-06-30 Fri 21:00</p>
+<p class="date">Created: 2017-07-02 Sun 12:23</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 ]]></content>
@@ -146,7 +146,9 @@ output {
       <category term="Elastic Stack" scheme="http://yoursite.com/categories/Elastic-Stack/"/>
     
     
-      <category term="zabbix logstash" scheme="http://yoursite.com/tags/zabbix-logstash/"/>
+      <category term="zabbix" scheme="http://yoursite.com/tags/zabbix/"/>
+    
+      <category term="logstash" scheme="http://yoursite.com/tags/logstash/"/>
     
   </entry>
   
@@ -185,7 +187,7 @@ output {
     <link href="http://yoursite.com/2017/06/05/using-plantuml-in-emacs/"/>
     <id>http://yoursite.com/2017/06/05/using-plantuml-in-emacs/</id>
     <published>2017-06-05T02:12:00.000Z</published>
-    <updated>2017-07-01T08:24:48.000Z</updated>
+    <updated>2017-07-02T04:23:12.000Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -195,7 +197,7 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
 
 <p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-05 Thu 10:12&gt;</span></span></p>
 <p class="author">Author: Yang Chuang</p>
-<p class="date">Created: 2017-07-01 Sat 16:24</p>
+<p class="date">Created: 2017-07-02 Sun 12:23</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 ]]></content>
@@ -215,7 +217,9 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
       <category term="Emacs" scheme="http://yoursite.com/categories/Emacs/"/>
     
     
-      <category term="orgmode plantuml" scheme="http://yoursite.com/tags/orgmode-plantuml/"/>
+      <category term="orgmode" scheme="http://yoursite.com/tags/orgmode/"/>
+    
+      <category term="plantuml" scheme="http://yoursite.com/tags/plantuml/"/>
     
   </entry>
   
