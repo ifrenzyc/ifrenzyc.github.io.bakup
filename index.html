@@ -155,32 +155,132 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-blogging-with-hexo-orgmode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-use-metrics-filter-monitoring-logstash-tps-with-zabbix" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/blogging-with-hexo-orgmode/">使用 Hexo + Orgmode 构建博客</a>
+      <a class="article-title" href="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/">通过 Zabbix 实现 Logstash 的监控</a>
     </h1>
   
 
         
-        <a href="/2017/06/07/blogging-with-hexo-orgmode/" class="archive-article-date">
-  	<time datetime="2017-06-07T00:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
+        <a href="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/" class="archive-article-date">
+  	<time datetime="2017-06-27T02:12:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可[<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。</p>
-<h1 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h1><ul>
-<li><a href="https://github.com/lengyueyang/lengyueyang.github.io" target="_blank" rel="external">https://lengyueyang.github.io/</a></li>
-<li><a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用Hexo和emacs-Org来写博客</a></li>
-<li><a href="https://weychen.github.io/2016/09/28/set-up-blog-with-hexo-org-mode/" target="_blank" rel="external">set-up-blog-with-hexo+org-mode</a></li>
+        
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 参考内容</a></li>
 </ul>
+</div>
+</div>
+<p>
+参考：<a href="https://kibana.logstash.es/content/logstash/performance/monitor/heartbeat.html" target="_blank" rel="external">监控方案</a>
+</p>
+
+<p>
+由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。
+由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安装方式非常简单[参考：<a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="external">zabbix|Logstash</a> ]：
+</p>
+
+<pre class="example">
+$ bin/logstash-plugin install logstash-output-zabbix
+</pre>
+
+<p>
+配置 Zabbix 的数据采集：
+</p>
+<ol class="org-ol">
+<li>配置新的主机名为 “logstash-indexer-1”
+</li>
+</ol>
+
+<div class="figure">
+<p><img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./zabbix-host.png" alt="zabbix-host.png">
+</p>
+</div>
+
+<ol class="org-ol">
+<li>配置采集项
+</li>
+</ol>
+
+<div class="figure">
+<p><img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./zabbix-logstash-item.png" alt="zabbix-logstash-item.png">
+</p>
+</div>
+
+<p>
+修改 logstash 的配置文件，增加 metrics filter 和 zabbix output：
+</p>
+<pre class="example">
+input {
+  ...
+}
+
+filter {
+  ...
+
+  metrics {
+    meter =&gt; "events"  # 统计每一个经过 filter 的事件
+    add_tag =&gt; "metric"
+    add_field =&gt; {"[@metadata][zabbix_key]" =&gt; "logstash_events"}  # zabbix item 的 key，这个要和 zabbix 的配置一致
+    add_field =&gt; { "[@metadata][zabbix_host]" =&gt; "logstash-indexer-1" }  # zabbix 写入的主机
+    flush_interval =&gt; 10  # 每隔 10s 写一次
+  }
+}
+
+output {
+  ...
+
+  if "metric" in [tags] {
+    zabbix {
+      zabbix_server_host =&gt; "192.168.56.113"
+      zabbix_host =&gt; "[@metadata][zabbix_host]"
+      zabbix_key =&gt; "[@metadata][zabbix_key]"
+      zabbix_value =&gt; "[events][count]"  # [events][count] 是事件统计数据，还有其他字段内容，具体参考官网文档
+    }
+  }
+}
+</pre>
+<p>
+配置好 logstash 后，reload 配置或重启服务即可。
+具体配置参考官方文档说明。
+</p>
+
+<p>
+至此，查看 Zabbix web 界面的 item 项即可看到监控 TPS 的图表了：
+<img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./logstash-tps-graph.png" alt="logstash-tps-graph.png">
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 参考内容</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-metrics.html" target="_blank" rel="external">metrics</a>
+</li>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="external">zabbix</a>
+</li>
+</ul>
+</div>
+</div>
+
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-27 Thu 10:12&gt;</span></span></p>
+<p class="author">Author: Yang Chuang</p>
+<p class="date">Created: 2017-06-30 Fri 21:00</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 
       
 
@@ -194,11 +294,142 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">zabbix logstash</a>
         		</li>
-      		 
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">orgmode</a>
+        			<a href="/categories/ElasticStack/" class="article-tag-list-link color4">Elastic Stack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-distributed-transactions-introduce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/22/distributed-transactions-introduce/">分布式事务知识整理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/22/distributed-transactions-introduce/" class="archive-article-date">
+  	<time datetime="2017-06-22T14:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+
+
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-22 Thu 22:21&gt;</span></span></p>
+<p class="author">Author: Yang Chuang</p>
+<p class="date">Created: 2017-07-02 Sun 12:18</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/22/distributed-transactions-introduce/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-using-plantuml-in-emacs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/05/using-plantuml-in-emacs/">在 Emacs 中使用 PlantUML</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/05/using-plantuml-in-emacs/" class="archive-article-date">
+  	<time datetime="2017-06-05T02:12:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+
+<p>
+PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 Java 环境。
+</p>
+
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-05 Thu 10:12&gt;</span></span></p>
+<p class="author">Author: Yang Chuang</p>
+<p class="date">Created: 2017-07-01 Sat 16:24</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">orgmode plantuml</a>
         		</li>
       		
 		</ul>
@@ -212,9 +443,316 @@
         		<li class="article-tag-list-item">
         			<a href="/categories/Emacs/" class="article-tag-list-link color1">Emacs</a>
         		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/05/using-plantuml-in-emacs/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-blogging-with-hexo-orgmode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/04/blogging-with-hexo-orgmode/">使用 Hexo + Orgmode 构建博客</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/04/blogging-with-hexo-orgmode/" class="archive-article-date">
+  	<time datetime="2017-06-04T00:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 基本设置</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 使用 orgmode 来编辑文档</a></li>
+<li><a href="#sec-1-2">1.2. hexo-asset-image</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. 其他解决方案</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3. 使用 Emacs 来生成博客静态页面及启停 Hexo</a></li>
+<li><a href="#sec-1-4">1.4. RSS 插件</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 主题</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Wiki Theme For Hexo</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. disqus 评论</a></li>
+<li><a href="#sec-4">4. 常用命令</a></li>
+<li><a href="#sec-5">5. 参考材料</a></li>
+<li><a href="#sec-6">6. 一些比较不错的 Hexo 博客</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 基本设置</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 使用 orgmode 来编辑文档</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+感谢 CodeFalling 插件：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> hexo-asset-image</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+配合这个插件使用：
+<a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">https://github.com/CodeFalling/hexo-asset-image</a>  这个插件值得使用
+</p>
+
+<ul class="org-ul">
+<li><a href="http://www.tuicool.com/articles/umEBVfI" target="_blank" rel="external">在 hexo 中无痛使用本地图片</a>
+</li>
+<li><a href="http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="external">hexo 中完美插入本地图片</a>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> 其他解决方案</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+图床
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 使用 Emacs 来生成博客静态页面及启停 Hexo</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+参考：<a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> RSS 插件</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+支持 RSS：
+</p>
+<div class="org-src-container">
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+启动服务器，用浏览器打开 <a href="http://localhost:4000/atom.xml%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0" target="_blank" rel="external">http://localhost:4000/atom.xml%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0</a> RSS 已经生效了。
+</p>
+
+<p>
+关于 RSS 的设置。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 主题</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Hexo 有丰富的主题资源可以使用，其中比较知名的的是 NexT 主题。
+</p>
+
+<p>
+不同的主题配置会很不一样。
+</p>
+
+<p>
+<b>其他一些好看的主题：</b>
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/7ye/maupassant-hexo" target="_blank" rel="external">7ye/maupassant-hexo - GitHub</a>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Wiki Theme For Hexo</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+同样也有用于构建 Wiki 的主题，参考：<a href="http://www.jianshu.com/p/e7413116e9d4" target="_blank" rel="external">Hexo 搭建 WiKi</a>(<a href="https://github.com/wzpan/hexo-theme-wixo" target="_blank" rel="external">wzpan/hexo-theme-wixo - GitHub</a>)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> disqus 评论</h2>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 常用命令</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+## Quick Start
+</p>
+
+<p>
+### Create a new post
+</p>
+
+<p>
+``` bash
+$ hexo new "My New Post"
+```
+</p>
+
+<p>
+More info: [Writing](<a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">https://hexo.io/docs/writing.html</a>)
+</p>
+
+<p>
+### Run server
+</p>
+
+<p>
+``` bash
+$ hexo server
+```
+</p>
+
+<p>
+More info: [Server](<a href="https://hexo.io/docs/server.html" target="_blank" rel="external">https://hexo.io/docs/server.html</a>)
+</p>
+
+<p>
+### Generate static files
+</p>
+
+<p>
+``` bash
+$ hexo generate
+```
+</p>
+
+<p>
+More info: [Generating](<a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">https://hexo.io/docs/generating.html</a>)
+</p>
+
+<p>
+### Deploy to remote sites
+</p>
+
+<p>
+``` bash
+$ hexo deploy
+```
+</p>
+
+<p>
+More info: [Deployment](<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">https://hexo.io/docs/deployment.html</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 参考材料</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://github.com/lengyueyang/lengyueyang.github.io" target="_blank" rel="external"><a href="https://lengyueyang.github.io/" target="_blank" rel="external">https://lengyueyang.github.io/</a></a>
+</li>
+<li><a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a>
+</li>
+<li><a href="https://weychen.github.io/2016/09/28/set-up-blog-with-hexo-org-mode/" target="_blank" rel="external">set-up-blog-with-hexo+org-mode</a>
+</li>
+<li><a href="https://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" target="_blank" rel="external">Hexo 3.1.1 静态博客搭建指南</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 一些比较不错的 Hexo 博客</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><a href="http://lowrank.science/" target="_blank" rel="external">Grok</a>
+</li>
+</ul>
+</div>
+</div>
+
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-04 Sun 08:36&gt;</span></span></p>
+<p class="author">Author: Yang Chuang</p>
+<p class="date">Created: 2017-07-01 Sat 16:23</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">emacs</a>
+        		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/杂物间/" class="article-tag-list-link color4">杂物间</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">orgmode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo/" class="article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -223,7 +761,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/blogging-with-hexo-orgmode/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/06/04/blogging-with-hexo-orgmode/">展开全文 >></a>
         </p>
       
 
@@ -245,36 +783,77 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/31/elasticsearch-introduction/">Elasticsearch 核心概念</a>
+      <a class="article-title" href="/2017/06/04/elasticsearch-introduction/">Elasticsearch 核心概念</a>
     </h1>
   
 
         
-        <a href="/2017/05/31/elasticsearch-introduction/" class="archive-article-date">
-  	<time datetime="2017-05-31T09:44:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
+        <a href="/2017/06/04/elasticsearch-introduction/" class="archive-article-date">
+  	<time datetime="2017-06-04T00:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在深入学习使用 Elasticsearch（以下简称：<code>es</code>）之前，有必要对其相关的概念进行了解。核心概念如下：</p>
+        
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
 <ul>
-<li><p><strong>集群(Cluster)</strong><br>集群是 es 的一个分布式运作环境，有一个统一的集群名字（<code>cluster.name</code>）。由多个节点构成，其中有且只有一个为主节点，这个主节点是可以通过选举产生的，主从节点是对于集群内部来说的。es 的一个概念就是去中心化，字面上理解就是无中心节点，这是对于集群外部来说的，因为从外部来看 es 集群，在逻辑上是个整体，你与任何一个节点的通信和与整个 es 集群通信是等价的。</p>
-</li>
-<li><p><strong>节点(Node)</strong></p>
-</li>
-<li><p><strong>索引(index)</strong></p>
-</li>
-<li><p><strong>类型(Type)</strong></p>
-</li>
-<li><p><strong>文档(Document)</strong></p>
-</li>
-<li><p><strong>分片(Shard)</strong></p>
-</li>
-<li><p><strong>副本(Replica)</strong></p>
-</li>
+<li><a href="#sec-1">1. 集群(Cluster)</a></li>
+<li><a href="#sec-2">2. 节点(Node)</a></li>
+<li><a href="#sec-3">3. 索引(index)</a></li>
+<li><a href="#sec-4">4. 类型(Type)</a></li>
+<li><a href="#sec-5">5. 文档(Document)</a></li>
+<li><a href="#sec-6">6. 分片(Shard)</a></li>
+<li><a href="#sec-7">7. 副本(Replica)</a></li>
 </ul>
+</div>
+</div>
+<p>
+在深入学习使用 Elasticsearch（以下简称：`es`）之前，有必要对其相关的概念进行了解。核心概念如下：
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 集群(Cluster)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+集群是 es 的一个分布式运作环境，有一个统一的集群名字（`cluster.name`）。由多个节点构成，其中有且只有一个为主节点，这个主节点是可以通过选举产生的，主从节点是对于集群内部来说的。es 的一个概念就是去中心化，字面上理解就是无中心节点，这是对于集群外部来说的，因为从外部来看 es 集群，在逻辑上是个整体，你与任何一个节点的通信和与整个 es 集群通信是等价的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 节点(Node)</h2>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 索引(index)</h2>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 类型(Type)</h2>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 文档(Document)</h2>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 分片(Shard)</h2>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 副本(Replica)</h2>
+</div>
+
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-06-04 Sun 08:36&gt;</span></span></p>
+<p class="author">Author: Yang Chuang</p>
+<p class="date">Created: 2017-07-01 Sat 17:22</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 
       
 
@@ -295,66 +874,21 @@
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ElasticStack/" class="article-tag-list-link color4">Elastic Stack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/31/elasticsearch-introduction/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/26/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/26/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-26T15:58:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/26/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/06/04/elasticsearch-introduction/">展开全文 >></a>
         </p>
       
 
@@ -461,7 +995,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">emacs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,7 +1003,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">zabbix logstash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">orgmode plantuml</a>
               </li>
             
             <div class="clearfix"></div>
