@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-16T09:40:49.944Z</updated>
+  <updated>2017-11-16T09:51:41.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,191 +20,42 @@
     <link href="http://yoursite.com/2017/11/16/mysql-streaming/"/>
     <id>http://yoursite.com/2017/11/16/mysql-streaming/</id>
     <published>2017-11-16T09:39:34.000Z</published>
-    <updated>2017-11-16T09:40:49.944Z</updated>
+    <updated>2017-11-16T09:51:41.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>Client Side Cursor</li>
 <li>Server Side Cursor</li>
 </ul>
-<p>在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（ =java.lang.OutOfMemoryError: Java heap space= ）。对于这个错误解决起来也很简单。</p>
+<p>在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（<code>java.lang.OutOfMemoryError: Java heap space</code>）。对于这个错误解决起来也很简单。</p>
 <p>MySQL JDBC 支持客户端的流方式（Streaming）读取数据，即应用程序一边从数据库拉取数据，每获取到一条数据后就可以立即丢给业务逻辑程序处理。代码实现也很简单：</p>
-<p>只要在初始化 Statement 的时候，设置这几个参数即可： =ResultSet.TYPE_FORWARD_ONLY= 、 =ResultSet.CONCUR_READ_ONLY= 、 =Integer.MIN_VALUE= 。</p>
-<h1 id="BEGIN-SRC-java"><a href="#BEGIN-SRC-java" class="headerlink" title="+BEGIN_SRC java"></a>+BEGIN_SRC java</h1><p>  preparedStatement = connection.prepareStatement(formatSql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);<br>  preparedStatement.setFetchSize(Integer.MIN_VALUE);</p>
-<h1 id="END-SRC"><a href="#END-SRC" class="headerlink" title="+END_SRC"></a>+END_SRC</h1><p>=setFetchSize=Integer.MIN_VALUE= 这是一个 magic number，而不是指定每次读取多少数据。不能改成其他值。具体参考[[<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][官方文档]]。" target="_blank" rel="external">https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][官方文档]]。</a></p>
-<p>下面是一个简单的使用例子</p>
-<h1 id="BEGIN-SRC-java-1"><a href="#BEGIN-SRC-java-1" class="headerlink" title="+BEGIN_SRC java"></a>+BEGIN_SRC java</h1><p>  import java.sql.Connection;<br>  import java.sql.DriverManager;<br>  import java.sql.ResultSet;<br>  import java.sql.Statement;</p>
-<p>  public class Streaming {<br>      public static void main(String[] args) throws Exception {<br>          Class.forName(“com.mysql.jdbc.Driver”);</p>
-<pre><code>      String url = &quot;jdbc:mysql://127.0.0.1:3306/test&quot;;
-      String username = &quot;root&quot;;
-      String password = &quot;Aa123456&quot;;
-      Connection conn = DriverManager.getConnection(url, username, password);
-
-      Statement statement =
-              conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-      statement.setFetchSize(Integer.MIN_VALUE);
-      // MySQL connector 的 StatementImpl 的 createStreamingResultSet 方法中明确指出：
-      // We only stream result sets when they are forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE
-      // 也就是说必须设置这三个属性才能做到流式读取
-
-      int batchSize = 2000;
-
-      ResultSet rs = statement.executeQuery(&quot;select * from steaming_test&quot;);//一般的数据读取
-      while (true) {
-          for (int rowIndex = 0; rowIndex &lt; batchSize; rowIndex++) {
-              if(!rs.next()){
-                  return;
-              }
-              System.out.println(&quot;one line&quot;);
-          }
-          System.out.println(&quot;one batch&quot;);
-      }
-  }
-</code></pre><p>  }</p>
-<h1 id="END-SRC-1"><a href="#END-SRC-1" class="headerlink" title="+END_SRC"></a>+END_SRC</h1><ul>
-<li><p>为什么 MySQL 没有默认就采用 Streaming 方式？<br>关于 Streaming 的代价，参考：</p>
-</li>
-<li><p>采用 Streaming 方式在 MySQL 协议和数据报文上有没什么影响？<br>并没有，Streaming 方式有客户端模式（Client Side Cursor）和服务端模式（Server Side Cursor），上面程序例子采用的是客户端模式，MySQL 数据库的数据报文没任何差异。</p>
-</li>
-<li><p>Streaming 的主要问题</p>
-</li>
-</ul>
-<ul>
-<li><p>长时间占用数据库链接</p>
-<ul>
+<p>只要在初始化 Statement 的时候，设置这几个参数即可：<code>ResultSet.TYPE_FORWARD_ONLY</code>、<code>ResultSet.CONCUR_READ_ONLY</code>、<code>Integer.MIN_VALUE</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">preparedStatement = connection.prepareStatement(formatSql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);</div><div class="line">preparedStatement.setFetchSize(Integer.MIN_VALUE);</div></pre></td></tr></table></figure>
+<p><code>setFetchSize=Integer.MIN_VALUE</code> 这是一个 magic number，而不是指定每次读取多少数据。不能改成其他值。具体参考<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet" target="_blank" rel="external">官方文档</a>。<br>下面是一个简单的使用例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.DriverManager;</div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.sql.Statement;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Streaming</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">  </div><div class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/test"</span>;</div><div class="line">        String username = <span class="string">"root"</span>;</div><div class="line">        String password = <span class="string">"Aa123456"</span>;</div><div class="line">        Connection conn = DriverManager.getConnection(url, username, password);</div><div class="line">  </div><div class="line">        Statement statement =</div><div class="line">                conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);</div><div class="line">        statement.setFetchSize(Integer.MIN_VALUE);</div><div class="line">        <span class="comment">// MySQL connector 的 StatementImpl 的 createStreamingResultSet 方法中明确指出：</span></div><div class="line">        <span class="comment">// We only stream result sets when they are forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE</span></div><div class="line">        <span class="comment">// 也就是说必须设置这三个属性才能做到流式读取</span></div><div class="line">  </div><div class="line">        <span class="keyword">int</span> batchSize = <span class="number">2000</span>;</div><div class="line">  </div><div class="line">        ResultSet rs = statement.executeQuery(<span class="string">"select * from steaming_test"</span>);<span class="comment">//一般的数据读取</span></div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> rowIndex = <span class="number">0</span>; rowIndex &lt; batchSize; rowIndex++) &#123;</div><div class="line">                <span class="keyword">if</span>(!rs.next())&#123;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                System.out.println(<span class="string">"one line"</span>);</div><div class="line">            &#125;</div><div class="line">            System.out.println(<span class="string">"one batch"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="为什么-MySQL-没有默认就采用-Streaming-方式？"><a href="#为什么-MySQL-没有默认就采用-Streaming-方式？" class="headerlink" title="为什么 MySQL 没有默认就采用 Streaming 方式？"></a>为什么 MySQL 没有默认就采用 Streaming 方式？</h2><p>  关于 Streaming 的代价，参考：</p>
+<h2 id="采用-Streaming-方式在-MySQL-协议和数据报文上有没什么影响？"><a href="#采用-Streaming-方式在-MySQL-协议和数据报文上有没什么影响？" class="headerlink" title="采用 Streaming 方式在 MySQL 协议和数据报文上有没什么影响？"></a>采用 Streaming 方式在 MySQL 协议和数据报文上有没什么影响？</h2><p>  并没有，Streaming 方式有客户端模式（Client Side Cursor）和服务端模式（Server Side Cursor），上面程序例子采用的是客户端模式，MySQL 数据库的数据报文没任何差异。</p>
+<h2 id="Streaming-的主要问题"><a href="#Streaming-的主要问题" class="headerlink" title="Streaming 的主要问题"></a>Streaming 的主要问题</h2><ul>
+<li>长时间占用数据库链接<ul>
 <li>单个链接占用时间长</li>
 <li>同个事务内链接无法复用</li>
 </ul>
 </li>
-<li><p>数据库当前锁</p>
-<ul>
+<li>数据库当前锁<ul>
 <li>不同链接无法获取到事务锁</li>
 </ul>
 </li>
 </ul>
-<ul>
-<li>应用场景<br><em>* Streaming 的应用场景<br>采用 Streaming 方式读取数据，看似一件很美好的事情，但是对于数据库本身却是代价非常大的。如果业务程序处理不当，会导致长时间占用数据库链接。目前只有下面一种场景建议采用 Streaming 方式读取数据： </em>需要大批量获取数据库记录用于产生其他存储的数据的业务场景* 。</li>
-</ul>
-<p>具体的使用例子有：</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="Streaming-的应用场景"><a href="#Streaming-的应用场景" class="headerlink" title="Streaming 的应用场景"></a>Streaming 的应用场景</h3><p>采用 Streaming 方式读取数据，看似一件很美好的事情，但是对于数据库本身却是代价非常大的。如果业务程序处理不当，会导致长时间占用数据库链接。目前只有下面一种场景建议采用 Streaming 方式读取数据： <strong>需要大批量获取数据库记录用于产生其他存储的数据的业务场景</strong> 。<br>具体的使用例子有：</p>
 <ul>
 <li>用户查询大批量数据后用于导出；</li>
 <li>获取整表数据用于全量更新缓存/消息中间件数据等；</li>
 </ul>
-<p>** 什么场景下不适合使用<br>有一些场景看似可以用流处理当不应该用的，比如：数据批处理。</p>
-<p>如：查询一批数据进行业务处理，然后将数据改成下一个流转状态的。</p>
-<ul>
-<li>参考材料</li>
-</ul>
-<ul>
-<li>[[<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][JDBC" target="_blank" rel="external">https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][JDBC</a> API Implementation Notes]]</li>
-<li>[[<a href="http://hedengcheng.com/?p=771][MySQL" target="_blank" rel="external">http://hedengcheng.com/?p=771][MySQL</a> 加锁处理分析]]</li>
-<li>[[<a href="http://codepub.cn/2017/05/12/MySQL-pull-the-massive-data-out-of-memory-error/][MySQL" target="_blank" rel="external">http://codepub.cn/2017/05/12/MySQL-pull-the-massive-data-out-of-memory-error/][MySQL</a> 拉取海量数据报 OutOfMemoryError]]</li>
-<li>[[<a href="https://www.wix.engineering/single-post/2017/09/18/The-Cost-of-Streaming-Data-from-MySQL][The" target="_blank" rel="external">https://www.wix.engineering/single-post/2017/09/18/The-Cost-of-Streaming-Data-from-MySQL][The</a> Cost of Streaming Data from MySQL]]</li>
-<li>[[<a href="https://vladmihalcea.com/2016/11/23/how-does-mysql-result-set-streaming-perform-vs-fetching-the-whole-jdbc-resultset-at-once/][How" target="_blank" rel="external">https://vladmihalcea.com/2016/11/23/how-does-mysql-result-set-streaming-perform-vs-fetching-the-whole-jdbc-resultset-at-once/][How</a> does MySQL result set streaming perform vs fetching the whole JDBC ResultSet at once]]</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;Client Side Cursor&lt;/li&gt;
-&lt;li&gt;Server Side Cursor&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于
-    
-    </summary>
-    
-      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
-    
-    
-      <category term="mysql, java" scheme="http://yoursite.com/tags/mysql-java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Streaming 的使用和约束</title>
-    <link href="http://yoursite.com/2017/11/16/mysql/"/>
-    <id>http://yoursite.com/2017/11/16/mysql/</id>
-    <published>2017-11-16T09:39:34.000Z</published>
-    <updated>2017-11-16T09:41:21.972Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
-<li>Client Side Cursor</li>
-<li>Server Side Cursor</li>
-</ul>
-<p>在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（ =java.lang.OutOfMemoryError: Java heap space= ）。对于这个错误解决起来也很简单。</p>
-<p>MySQL JDBC 支持客户端的流方式（Streaming）读取数据，即应用程序一边从数据库拉取数据，每获取到一条数据后就可以立即丢给业务逻辑程序处理。代码实现也很简单：</p>
-<p>只要在初始化 Statement 的时候，设置这几个参数即可： =ResultSet.TYPE_FORWARD_ONLY= 、 =ResultSet.CONCUR_READ_ONLY= 、 =Integer.MIN_VALUE= 。</p>
-<h1 id="BEGIN-SRC-java"><a href="#BEGIN-SRC-java" class="headerlink" title="+BEGIN_SRC java"></a>+BEGIN_SRC java</h1><p>  preparedStatement = connection.prepareStatement(formatSql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);<br>  preparedStatement.setFetchSize(Integer.MIN_VALUE);</p>
-<h1 id="END-SRC"><a href="#END-SRC" class="headerlink" title="+END_SRC"></a>+END_SRC</h1><p>=setFetchSize=Integer.MIN_VALUE= 这是一个 magic number，而不是指定每次读取多少数据。不能改成其他值。具体参考[[<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][官方文档]]。" target="_blank" rel="external">https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][官方文档]]。</a></p>
-<p>下面是一个简单的使用例子</p>
-<h1 id="BEGIN-SRC-java-1"><a href="#BEGIN-SRC-java-1" class="headerlink" title="+BEGIN_SRC java"></a>+BEGIN_SRC java</h1><p>  import java.sql.Connection;<br>  import java.sql.DriverManager;<br>  import java.sql.ResultSet;<br>  import java.sql.Statement;</p>
-<p>  public class Streaming {<br>      public static void main(String[] args) throws Exception {<br>          Class.forName(“com.mysql.jdbc.Driver”);</p>
-<pre><code>      String url = &quot;jdbc:mysql://127.0.0.1:3306/test&quot;;
-      String username = &quot;root&quot;;
-      String password = &quot;Aa123456&quot;;
-      Connection conn = DriverManager.getConnection(url, username, password);
-
-      Statement statement =
-              conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-      statement.setFetchSize(Integer.MIN_VALUE);
-      // MySQL connector 的 StatementImpl 的 createStreamingResultSet 方法中明确指出：
-      // We only stream result sets when they are forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE
-      // 也就是说必须设置这三个属性才能做到流式读取
-
-      int batchSize = 2000;
-
-      ResultSet rs = statement.executeQuery(&quot;select * from steaming_test&quot;);//一般的数据读取
-      while (true) {
-          for (int rowIndex = 0; rowIndex &lt; batchSize; rowIndex++) {
-              if(!rs.next()){
-                  return;
-              }
-              System.out.println(&quot;one line&quot;);
-          }
-          System.out.println(&quot;one batch&quot;);
-      }
-  }
-</code></pre><p>  }</p>
-<h1 id="END-SRC-1"><a href="#END-SRC-1" class="headerlink" title="+END_SRC"></a>+END_SRC</h1><ul>
-<li><p>为什么 MySQL 没有默认就采用 Streaming 方式？<br>关于 Streaming 的代价，参考：</p>
-</li>
-<li><p>采用 Streaming 方式在 MySQL 协议和数据报文上有没什么影响？<br>并没有，Streaming 方式有客户端模式（Client Side Cursor）和服务端模式（Server Side Cursor），上面程序例子采用的是客户端模式，MySQL 数据库的数据报文没任何差异。</p>
-</li>
-<li><p>Streaming 的主要问题</p>
-</li>
-</ul>
-<ul>
-<li><p>长时间占用数据库链接</p>
-<ul>
-<li>单个链接占用时间长</li>
-<li>同个事务内链接无法复用</li>
-</ul>
-</li>
-<li><p>数据库当前锁</p>
-<ul>
-<li>不同链接无法获取到事务锁</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>应用场景<br><em>* Streaming 的应用场景<br>采用 Streaming 方式读取数据，看似一件很美好的事情，但是对于数据库本身却是代价非常大的。如果业务程序处理不当，会导致长时间占用数据库链接。目前只有下面一种场景建议采用 Streaming 方式读取数据： </em>需要大批量获取数据库记录用于产生其他存储的数据的业务场景* 。</li>
-</ul>
-<p>具体的使用例子有：</p>
-<ul>
-<li>用户查询大批量数据后用于导出；</li>
-<li>获取整表数据用于全量更新缓存/消息中间件数据等；</li>
-</ul>
-<p>** 什么场景下不适合使用<br>有一些场景看似可以用流处理当不应该用的，比如：数据批处理。</p>
-<p>如：查询一批数据进行业务处理，然后将数据改成下一个流转状态的。</p>
-<ul>
-<li>参考材料</li>
-</ul>
-<ul>
-<li>[[<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][JDBC" target="_blank" rel="external">https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet][JDBC</a> API Implementation Notes]]</li>
-<li>[[<a href="http://hedengcheng.com/?p=771][MySQL" target="_blank" rel="external">http://hedengcheng.com/?p=771][MySQL</a> 加锁处理分析]]</li>
-<li>[[<a href="http://codepub.cn/2017/05/12/MySQL-pull-the-massive-data-out-of-memory-error/][MySQL" target="_blank" rel="external">http://codepub.cn/2017/05/12/MySQL-pull-the-massive-data-out-of-memory-error/][MySQL</a> 拉取海量数据报 OutOfMemoryError]]</li>
-<li>[[<a href="https://www.wix.engineering/single-post/2017/09/18/The-Cost-of-Streaming-Data-from-MySQL][The" target="_blank" rel="external">https://www.wix.engineering/single-post/2017/09/18/The-Cost-of-Streaming-Data-from-MySQL][The</a> Cost of Streaming Data from MySQL]]</li>
-<li>[[<a href="https://vladmihalcea.com/2016/11/23/how-does-mysql-result-set-streaming-perform-vs-fetching-the-whole-jdbc-resultset-at-once/][How" target="_blank" rel="external">https://vladmihalcea.com/2016/11/23/how-does-mysql-result-set-streaming-perform-vs-fetching-the-whole-jdbc-resultset-at-once/][How</a> does MySQL result set streaming perform vs fetching the whole JDBC ResultSet at once]]</li>
+<h3 id="什么场景下不适合使用"><a href="#什么场景下不适合使用" class="headerlink" title="什么场景下不适合使用"></a>什么场景下不适合使用</h3><p>有一些场景看似可以用流处理当不应该用的，比如：数据批处理。<br>如：查询一批数据进行业务处理，然后将数据改成下一个流转状态的。</p>
+<h2 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h2><ul>
+<li><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet" target="_blank" rel="external">JDBC API Implementation Notes</a></li>
+<li><a href="http://hedengcheng.com/?p=771" target="_blank" rel="external">MySQL 加锁处理分析</a></li>
+<li><a href="http://codepub.cn/2017/05/12/MySQL-pull-the-massive-data-out-of-memory-error/" target="_blank" rel="external">MySQL 拉取海量数据报 OutOfMemoryError</a></li>
+<li><a href="https://www.wix.engineering/single-post/2017/09/18/The-Cost-of-Streaming-Data-from-MySQL" target="_blank" rel="external">The Cost of Streaming Data from MySQL</a></li>
+<li><a href="https://vladmihalcea.com/2016/11/23/how-does-mysql-result-set-streaming-perform-vs-fetching-the-whole-jdbc-resultset-at-once/" target="_blank" rel="external">How does MySQL result set streaming perform vs fetching the whole JDBC ResultSet at once</a></li>
 </ul>
 ]]></content>
     
