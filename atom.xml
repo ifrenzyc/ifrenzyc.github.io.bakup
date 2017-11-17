@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-16T09:51:41.000Z</updated>
+  <updated>2017-11-17T00:54:07.928Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/11/16/mysql-streaming/"/>
     <id>http://yoursite.com/2017/11/16/mysql-streaming/</id>
     <published>2017-11-16T09:39:34.000Z</published>
-    <updated>2017-11-16T09:51:41.000Z</updated>
+    <updated>2017-11-17T00:54:07.928Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>Client Side Cursor</li>
@@ -30,7 +30,7 @@
 <p>MySQL JDBC 支持客户端的流方式（Streaming）读取数据，即应用程序一边从数据库拉取数据，每获取到一条数据后就可以立即丢给业务逻辑程序处理。代码实现也很简单：</p>
 <p>只要在初始化 Statement 的时候，设置这几个参数即可：<code>ResultSet.TYPE_FORWARD_ONLY</code>、<code>ResultSet.CONCUR_READ_ONLY</code>、<code>Integer.MIN_VALUE</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">preparedStatement = connection.prepareStatement(formatSql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);</div><div class="line">preparedStatement.setFetchSize(Integer.MIN_VALUE);</div></pre></td></tr></table></figure>
-<p><code>setFetchSize=Integer.MIN_VALUE</code> 这是一个 magic number，而不是指定每次读取多少数据。不能改成其他值。具体参考<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet" target="_blank" rel="external">官方文档</a>。<br>下面是一个简单的使用例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.DriverManager;</div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.sql.Statement;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Streaming</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">  </div><div class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/test"</span>;</div><div class="line">        String username = <span class="string">"root"</span>;</div><div class="line">        String password = <span class="string">"Aa123456"</span>;</div><div class="line">        Connection conn = DriverManager.getConnection(url, username, password);</div><div class="line">  </div><div class="line">        Statement statement =</div><div class="line">                conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);</div><div class="line">        statement.setFetchSize(Integer.MIN_VALUE);</div><div class="line">        <span class="comment">// MySQL connector 的 StatementImpl 的 createStreamingResultSet 方法中明确指出：</span></div><div class="line">        <span class="comment">// We only stream result sets when they are forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE</span></div><div class="line">        <span class="comment">// 也就是说必须设置这三个属性才能做到流式读取</span></div><div class="line">  </div><div class="line">        <span class="keyword">int</span> batchSize = <span class="number">2000</span>;</div><div class="line">  </div><div class="line">        ResultSet rs = statement.executeQuery(<span class="string">"select * from steaming_test"</span>);<span class="comment">//一般的数据读取</span></div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> rowIndex = <span class="number">0</span>; rowIndex &lt; batchSize; rowIndex++) &#123;</div><div class="line">                <span class="keyword">if</span>(!rs.next())&#123;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                System.out.println(<span class="string">"one line"</span>);</div><div class="line">            &#125;</div><div class="line">            System.out.println(<span class="string">"one batch"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>setFetchSize=Integer.MIN_VALUE</code> 这是一个 magic number，而不是指定每次读取多少数据。不能改成其他值。具体参考<a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet" target="_blank" rel="external">官方文档</a>。<br>下面是一个简单的使用例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.DriverManager;</div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.sql.Statement;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Streaming</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line"></div><div class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/test"</span>;</div><div class="line">        String username = <span class="string">"root"</span>;</div><div class="line">        String password = <span class="string">"Aa123456"</span>;</div><div class="line">        Connection conn = DriverManager.getConnection(url, username, password);</div><div class="line"></div><div class="line">        Statement statement =</div><div class="line">                conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);</div><div class="line">        statement.setFetchSize(Integer.MIN_VALUE);</div><div class="line">        <span class="comment">// MySQL connector 的 StatementImpl 的 createStreamingResultSet 方法中明确指出：</span></div><div class="line">        <span class="comment">// We only stream result sets when they are forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE</span></div><div class="line">        <span class="comment">// 也就是说必须设置这三个属性才能做到流式读取</span></div><div class="line"></div><div class="line">        <span class="keyword">int</span> batchSize = <span class="number">2000</span>;</div><div class="line"></div><div class="line">        ResultSet rs = statement.executeQuery(<span class="string">"select * from steaming_test"</span>);<span class="comment">//一般的数据读取</span></div><div class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> rowIndex = <span class="number">0</span>; rowIndex &lt; batchSize; rowIndex++) &#123;</div><div class="line">                <span class="keyword">if</span>(!rs.next())&#123;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                System.out.println(<span class="string">"one line"</span>);</div><div class="line">            &#125;</div><div class="line">            System.out.println(<span class="string">"one batch"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="为什么-MySQL-没有默认就采用-Streaming-方式？"><a href="#为什么-MySQL-没有默认就采用-Streaming-方式？" class="headerlink" title="为什么 MySQL 没有默认就采用 Streaming 方式？"></a>为什么 MySQL 没有默认就采用 Streaming 方式？</h2><p>  关于 Streaming 的代价，参考：</p>
 <h2 id="采用-Streaming-方式在-MySQL-协议和数据报文上有没什么影响？"><a href="#采用-Streaming-方式在-MySQL-协议和数据报文上有没什么影响？" class="headerlink" title="采用 Streaming 方式在 MySQL 协议和数据报文上有没什么影响？"></a>采用 Streaming 方式在 MySQL 协议和数据报文上有没什么影响？</h2><p>  并没有，Streaming 方式有客户端模式（Client Side Cursor）和服务端模式（Server Side Cursor），上面程序例子采用的是客户端模式，MySQL 数据库的数据报文没任何差异。</p>
 <h2 id="Streaming-的主要问题"><a href="#Streaming-的主要问题" class="headerlink" title="Streaming 的主要问题"></a>Streaming 的主要问题</h2><ul>
@@ -44,7 +44,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="Streaming-的应用场景"><a href="#Streaming-的应用场景" class="headerlink" title="Streaming 的应用场景"></a>Streaming 的应用场景</h3><p>采用 Streaming 方式读取数据，看似一件很美好的事情，但是对于数据库本身却是代价非常大的。如果业务程序处理不当，会导致长时间占用数据库链接。目前只有下面一种场景建议采用 Streaming 方式读取数据： <strong>需要大批量获取数据库记录用于产生其他存储的数据的业务场景</strong> 。<br>具体的使用例子有：</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="Streaming-的应用场景"><a href="#Streaming-的应用场景" class="headerlink" title="Streaming 的应用场景"></a>Streaming 的应用场景</h3><p>采用 Streaming 方式读取数据，看似一件很美好的事情，但是对于数据库本身却是代价非常大的。如果业务程序处理不当，会导致长时间占用数据库链接。目前只有下面一种场景建议采用 Streaming 方式读取数据： <strong>需要大批量获取数据库记录用于产生其他存储的数据的业务场景</strong>。<br>具体的使用例子有：</p>
 <ul>
 <li>用户查询大批量数据后用于导出；</li>
 <li>获取整表数据用于全量更新缓存/消息中间件数据等；</li>
@@ -173,35 +173,6 @@ Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研
   </entry>
   
   <entry>
-    <title>Elasticsearch 日常运维操作</title>
-    <link href="http://yoursite.com/2017/07/03/maintain-elasticsearch/"/>
-    <id>http://yoursite.com/2017/07/03/maintain-elasticsearch/</id>
-    <published>2017-07-03T13:15:00.000Z</published>
-    <updated>2017-07-07T16:04:54.000Z</updated>
-    
-    <content type="html"><![CDATA[
-
-
-Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
-]]></content>
-    
-    <summary type="html">
-    
-      
-
-
-Last Updated 2017-07-08 Sat 00:04.&lt;br&gt;Render by &lt;a href=&quot;https://github.com/CodeFalling/hexo-renderer-org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;
-    
-    </summary>
-    
-      <category term="Elastic Stack" scheme="http://yoursite.com/categories/Elastic-Stack/"/>
-    
-    
-      <category term="elasticsearch" scheme="http://yoursite.com/tags/elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Elastic Stack 的相关监控</title>
     <link href="http://yoursite.com/2017/07/03/monitoring-elastic-stack/"/>
     <id>http://yoursite.com/2017/07/03/monitoring-elastic-stack/</id>
@@ -272,6 +243,35 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
       <category term="logstash" scheme="http://yoursite.com/tags/logstash/"/>
     
       <category term="filebeat" scheme="http://yoursite.com/tags/filebeat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Elasticsearch 日常运维操作</title>
+    <link href="http://yoursite.com/2017/07/03/maintain-elasticsearch/"/>
+    <id>http://yoursite.com/2017/07/03/maintain-elasticsearch/</id>
+    <published>2017-07-03T13:15:00.000Z</published>
+    <updated>2017-07-07T16:04:54.000Z</updated>
+    
+    <content type="html"><![CDATA[
+
+
+Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+]]></content>
+    
+    <summary type="html">
+    
+      
+
+
+Last Updated 2017-07-08 Sat 00:04.&lt;br&gt;Render by &lt;a href=&quot;https://github.com/CodeFalling/hexo-renderer-org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;
+    
+    </summary>
+    
+      <category term="Elastic Stack" scheme="http://yoursite.com/categories/Elastic-Stack/"/>
+    
+    
+      <category term="elasticsearch" scheme="http://yoursite.com/tags/elasticsearch/"/>
     
   </entry>
   
@@ -508,265 +508,66 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
     <title>使用 Hexo + Orgmode 构建博客</title>
     <link href="http://yoursite.com/2017/06/04/blogging-with-hexo-orgmode/"/>
     <id>http://yoursite.com/2017/06/04/blogging-with-hexo-orgmode/</id>
-    <published>2017-06-04T00:36:00.000Z</published>
-    <updated>2017-11-15T08:03:04.908Z</updated>
+    <published>2017-06-04T00:36:32.000Z</published>
+    <updated>2017-11-17T01:11:37.120Z</updated>
     
-    <content type="html"><![CDATA[
-
-<p>
-使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。
-</p>
-
-<a id="more"></a>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 基本设置</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 使用 orgmode 来编辑文档</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-感谢 CodeFalling 插件：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a>
-</p>
-</div>
-
-<div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 禁止 hexo-renderer-org 生成 toc</h4>
-<div class="outline-text-4" id="text-1-1-1">
-<p>
-<b>方法一：</b>
-在每篇文章前面加上 <code>#+OPTIONS: toc:nil</code> 。
-</p>
-
-<p>
-<b>方法二：</b>
-统一设置。
-</p>
-
-<p>
-参考：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a>。
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> hexo-asset-image</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-配合这个插件使用：
-<a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">https://github.com/CodeFalling/hexo-asset-image</a>  这个插件值得使用
-</p>
-
-<ul class="org-ul">
-<li><a href="http://www.tuicool.com/articles/umEBVfI" target="_blank" rel="external">在 hexo 中无痛使用本地图片</a>
-</li>
-<li><a href="http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="external">hexo 中完美插入本地图片</a>
-</li>
+    <content type="html"><![CDATA[<p>使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。</p>
+<h1 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h1><h2 id="使用-orgmode-来编辑文档"><a href="#使用-orgmode-来编辑文档" class="headerlink" title="使用 orgmode 来编辑文档"></a>使用 orgmode 来编辑文档</h2><p>感谢 CodeFalling 插件：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a></p>
+<h3 id="禁止-hexo-renderer-org-生成-toc"><a href="#禁止-hexo-renderer-org-生成-toc" class="headerlink" title="禁止 hexo-renderer-org 生成 toc"></a>禁止 hexo-renderer-org 生成 toc</h3><p><strong>方法一：</strong><br>在每篇文章前面加上 =#+OPTIONS: toc:nil= 。</p>
+<p><strong>方法二：</strong><br>统一设置。</p>
+<p>参考：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a>。</p>
+<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>配合这个插件使用：<br><a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">https://github.com/CodeFalling/hexo-asset-image</a>  这个插件值得使用</p>
+<ul>
+<li><a href="http://www.tuicool.com/articles/umEBVfI" target="_blank" rel="external">在 hexo 中无痛使用本地图片</a></li>
+<li><a href="http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="external">hexo 中完美插入本地图片</a></li>
 </ul>
-</div>
-
-<div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> 其他解决方案</h4>
-<div class="outline-text-4" id="text-1-2-1">
-<p>
-图床
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 使用 Emacs 来生成博客静态页面及启停 Hexo</h3>
-<div class="outline-text-3" id="text-1-3">
-<p>
-参考：<a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a>
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4"><span class="section-number-3">1.4</span> RSS 插件</h3>
-<div class="outline-text-3" id="text-1-4">
-<p>
-支持 RSS：
-</p>
-<div class="org-src-container">
-
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
-</div>
-<p>
-启动服务器，用浏览器打开 <a href="http://localhost:4000/atom.xml%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0" target="_blank" rel="external">http://localhost:4000/atom.xml%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0</a> RSS 已经生效了。
-</p>
-
-<p>
-关于 RSS 的设置。
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 主题</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Hexo 有丰富的主题资源可以使用，其中比较知名的的是 NexT 主题。
-</p>
-
-<p>
-不同的主题配置会很不一样。
-</p>
-
-<p>
-<b>其他一些好看的主题：</b>
-</p>
-<ul class="org-ul">
-<li><a href="https://github.com/7ye/maupassant-hexo" target="_blank" rel="external">7ye/maupassant-hexo - GitHub</a>
-</li>
+<h3 id="其他解决方案"><a href="#其他解决方案" class="headerlink" title="其他解决方案"></a>其他解决方案</h3><p>图床</p>
+<h2 id="使用-Emacs-来生成博客静态页面及启停-Hexo"><a href="#使用-Emacs-来生成博客静态页面及启停-Hexo" class="headerlink" title="使用 Emacs 来生成博客静态页面及启停 Hexo"></a>使用 Emacs 来生成博客静态页面及启停 Hexo</h2><p>参考：<a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a></p>
+<h2 id="RSS-插件"><a href="#RSS-插件" class="headerlink" title="RSS 插件"></a>RSS 插件</h2><p>支持 RSS：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-feed --save</div></pre></td></tr></table></figure></p>
+<p>启动服务器，用浏览器打开 <a href="http://localhost:4000/atom.xml，就可以看到" target="_blank" rel="external">http://localhost:4000/atom.xml，就可以看到</a> RSS 已经生效了。</p>
+<p>关于 RSS 的设置。</p>
+<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>Hexo 有丰富的主题资源可以使用，其中比较知名的的是 NexT 主题。</p>
+<p>不同的主题配置会很不一样。</p>
+<p><strong>其他一些好看的主题：</strong></p>
+<ul>
+<li><a href="https://github.com/7ye/maupassant-hexo" target="_blank" rel="external">7ye/maupassant-hexo - GitHub</a></li>
 </ul>
-</div>
-
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Wiki Theme For Hexo</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-同样也有用于构建 Wiki 的主题，参考：<a href="http://www.jianshu.com/p/e7413116e9d4" target="_blank" rel="external">Hexo 搭建 WiKi</a>(<a href="https://github.com/wzpan/hexo-theme-wixo" target="_blank" rel="external">wzpan/hexo-theme-wixo - GitHub</a>)
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> disqus 评论</h2>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 常用命令</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-## Quick Start
-</p>
-
-<p>
-### Create a new post
-</p>
-
-<p>
-``` bash
-$ hexo new "My New Post"
-```
-</p>
-
-<p>
-More info: [Writing](<a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">https://hexo.io/docs/writing.html</a>)
-</p>
-
-<p>
-### Run server
-</p>
-
-<p>
-``` bash
-$ hexo server
-```
-</p>
-
-<p>
-More info: [Server](<a href="https://hexo.io/docs/server.html" target="_blank" rel="external">https://hexo.io/docs/server.html</a>)
-</p>
-
-<p>
-### Generate static files
-</p>
-
-<p>
-``` bash
-$ hexo generate
-```
-</p>
-
-<p>
-More info: [Generating](<a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">https://hexo.io/docs/generating.html</a>)
-</p>
-
-<p>
-### Deploy to remote sites
-</p>
-
-<p>
-``` bash
-$ hexo deploy
-```
-</p>
-
-<p>
-More info: [Deployment](<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">https://hexo.io/docs/deployment.html</a>)
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 参考材料</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li><a href="https://github.com/lengyueyang/lengyueyang.github.io" target="_blank" rel="external"><a href="https://lengyueyang.github.io/" target="_blank" rel="external">https://lengyueyang.github.io/</a></a>
-</li>
-<li><a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a>
-</li>
-<li><a href="https://weychen.github.io/2016/09/28/set-up-blog-with-hexo-org-mode/" target="_blank" rel="external">set-up-blog-with-hexo+org-mode</a>
-</li>
-<li><a href="https://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" target="_blank" rel="external">Hexo 3.1.1 静态博客搭建指南</a>
-</li>
+<h2 id="Wiki-Theme-For-Hexo"><a href="#Wiki-Theme-For-Hexo" class="headerlink" title="Wiki Theme For Hexo"></a>Wiki Theme For Hexo</h2><p>同样也有用于构建 Wiki 的主题，参考：<a href="http://www.jianshu.com/p/e7413116e9d4" target="_blank" rel="external">Hexo 搭建 WiKi</a>(<a href="https://github.com/wzpan/hexo-theme-wixo" target="_blank" rel="external">wzpan/hexo-theme-wixo - GitHub</a>)</p>
+<h1 id="disqus-评论"><a href="#disqus-评论" class="headerlink" title="disqus 评论"></a>disqus 评论</h1><p>$ 常用命令</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<h1 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h1><ul>
+<li><a href="https://github.com/lengyueyang/lengyueyang.github.io" target="_blank" rel="external">https://lengyueyang.github.io/</a></li>
+<li><a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a></li>
+<li><a href="https://weychen.github.io/2016/09/28/set-up-blog-with-hexo-org-mode/" target="_blank" rel="external">set-up-blog-with-hexo+org-mode</a></li>
+<li><a href="https://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" target="_blank" rel="external">Hexo 3.1.1 静态博客搭建指南</a></li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 解决 NexT 主题 Tags/Categories "Cannot GET <i>tags</i>" 错误</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-<a href="https://beeant0512.github.io/2016/03/20/2016-03-20-21-50-10/" target="_blank" rel="external">Next 主题 Tags/Categories Cannot GET <i>tags</i></a>
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 一些比较不错的 Hexo 博客</h2>
-<div class="outline-text-2" id="text-7">
-<ul class="org-ul">
-<li><a href="http://lowrank.science/" target="_blank" rel="external">Grok</a>
-</li>
+<h1 id="解决-NexT-主题-Tags-Categories-“Cannot-GET-tags-“-错误"><a href="#解决-NexT-主题-Tags-Categories-“Cannot-GET-tags-“-错误" class="headerlink" title="解决 NexT 主题 Tags/Categories “Cannot GET /tags/“ 错误"></a>解决 NexT 主题 Tags/Categories “Cannot GET /tags/“ 错误</h1><p><a href="https://beeant0512.github.io/2016/03/20/2016-03-20-21-50-10/" target="_blank" rel="external">Next 主题 Tags/Categories Cannot GET /tags/</a></p>
+<h1 id="一些比较不错的-Hexo-博客"><a href="#一些比较不错的-Hexo-博客" class="headerlink" title="一些比较不错的 Hexo 博客"></a>一些比较不错的 Hexo 博客</h1><ul>
+<li><a href="http://lowrank.science/" target="_blank" rel="external">Grok</a></li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> 目前问题</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 1. 使用 hexo-renderer-org，如果内容有 _ 的内容，下划线后面的文字都会转换成下标，目前还不知道如何处理。</h3>
-</div>
-</div>
-
-Last Updated 2017-07-08 Sat 00:26.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+<h1 id="目前问题"><a href="#目前问题" class="headerlink" title="目前问题"></a>目前问题</h1><ol>
+<li>使用 hexo-renderer-org，如果内容有 _ 的内容，下划线后面的文字都会转换成下标，目前还不知道如何处理。</li>
+</ol>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;
-使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [&lt;a href=&quot;https://github.com/hexojs/hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;]。
-&lt;/p&gt;
+      &lt;p&gt;使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [&lt;a href=&quot;https://github.com/hexojs/hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;]。&lt;/p&gt;
+&lt;h1 id=&quot;基本设置&quot;&gt;
     
     </summary>
     
       <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
     
     
-      <category term="emacs" scheme="http://yoursite.com/tags/emacs/"/>
-    
-      <category term="orgmode" scheme="http://yoursite.com/tags/orgmode/"/>
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="emacs, orgmode, hexo" scheme="http://yoursite.com/tags/emacs-orgmode-hexo/"/>
     
   </entry>
   
