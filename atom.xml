@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-17T08:02:14.755Z</updated>
+  <updated>2017-11-17T08:19:03.388Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/11/17/install-mysql/"/>
     <id>http://yoursite.com/2017/11/17/install-mysql/</id>
     <published>2017-11-17T07:49:34.000Z</published>
-    <updated>2017-11-17T08:02:14.755Z</updated>
+    <updated>2017-11-17T08:19:03.388Z</updated>
     
     <content type="html"><![CDATA[<h1 id="MySQL-安装部署"><a href="#MySQL-安装部署" class="headerlink" title="MySQL 安装部署"></a>MySQL 安装部署</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p><strong>MySQL 版本</strong>：5.7.19<br><strong>CenOS 版本</strong>：CentOS-7-x86_64-1704<br><strong>系统用户</strong>：user9（文中所有涉及到的 <code>user9</code> 都是指代系统用户名，需要替换成你实际部署的用户名）</p>
 <h2 id="获取-MySQL-二机制程序"><a href="#获取-MySQL-二机制程序" class="headerlink" title="获取 MySQL 二机制程序"></a>获取 MySQL 二机制程序</h2><p>MySQL 官网提供了打包好的二进制程序包，只要下载下来、解压、配置、启动即可完成 MySQL 的部署。相当方便。下载地址：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">Download MySQL Community Server</a>。</p>
@@ -72,7 +72,7 @@
     <link href="http://yoursite.com/2017/11/16/mysql-streaming/"/>
     <id>http://yoursite.com/2017/11/16/mysql-streaming/</id>
     <published>2017-11-16T09:39:34.000Z</published>
-    <updated>2017-11-17T00:54:07.928Z</updated>
+    <updated>2017-11-17T08:19:09.233Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>Client Side Cursor</li>
@@ -124,7 +124,7 @@
       <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
     
     
-      <category term="mysql, java" scheme="http://yoursite.com/tags/mysql-java/"/>
+      <category term="mysql java" scheme="http://yoursite.com/tags/mysql-java/"/>
     
   </entry>
   
@@ -225,6 +225,35 @@ Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研
   </entry>
   
   <entry>
+    <title>Elasticsearch 日常运维操作</title>
+    <link href="http://yoursite.com/2017/07/03/maintain-elasticsearch/"/>
+    <id>http://yoursite.com/2017/07/03/maintain-elasticsearch/</id>
+    <published>2017-07-03T13:15:00.000Z</published>
+    <updated>2017-07-07T16:04:54.000Z</updated>
+    
+    <content type="html"><![CDATA[
+
+
+Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+]]></content>
+    
+    <summary type="html">
+    
+      
+
+
+Last Updated 2017-07-08 Sat 00:04.&lt;br&gt;Render by &lt;a href=&quot;https://github.com/CodeFalling/hexo-renderer-org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;
+    
+    </summary>
+    
+      <category term="Elastic Stack" scheme="http://yoursite.com/categories/Elastic-Stack/"/>
+    
+    
+      <category term="elasticsearch" scheme="http://yoursite.com/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Elastic Stack 的相关监控</title>
     <link href="http://yoursite.com/2017/07/03/monitoring-elastic-stack/"/>
     <id>http://yoursite.com/2017/07/03/monitoring-elastic-stack/</id>
@@ -295,35 +324,6 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
       <category term="logstash" scheme="http://yoursite.com/tags/logstash/"/>
     
       <category term="filebeat" scheme="http://yoursite.com/tags/filebeat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Elasticsearch 日常运维操作</title>
-    <link href="http://yoursite.com/2017/07/03/maintain-elasticsearch/"/>
-    <id>http://yoursite.com/2017/07/03/maintain-elasticsearch/</id>
-    <published>2017-07-03T13:15:00.000Z</published>
-    <updated>2017-07-07T16:04:54.000Z</updated>
-    
-    <content type="html"><![CDATA[
-
-
-Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
-]]></content>
-    
-    <summary type="html">
-    
-      
-
-
-Last Updated 2017-07-08 Sat 00:04.&lt;br&gt;Render by &lt;a href=&quot;https://github.com/CodeFalling/hexo-renderer-org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;
-    
-    </summary>
-    
-      <category term="Elastic Stack" scheme="http://yoursite.com/categories/Elastic-Stack/"/>
-    
-    
-      <category term="elasticsearch" scheme="http://yoursite.com/tags/elasticsearch/"/>
     
   </entry>
   
@@ -561,7 +561,7 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
     <link href="http://yoursite.com/2017/06/04/blogging-with-hexo-orgmode/"/>
     <id>http://yoursite.com/2017/06/04/blogging-with-hexo-orgmode/</id>
     <published>2017-06-04T00:36:32.000Z</published>
-    <updated>2017-11-17T01:11:37.120Z</updated>
+    <updated>2017-11-17T08:19:17.510Z</updated>
     
     <content type="html"><![CDATA[<p>使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。</p>
 <h1 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h1><h2 id="使用-orgmode-来编辑文档"><a href="#使用-orgmode-来编辑文档" class="headerlink" title="使用 orgmode 来编辑文档"></a>使用 orgmode 来编辑文档</h2><p>感谢 CodeFalling 插件：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a></p>
@@ -619,7 +619,7 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
       <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
     
     
-      <category term="emacs, orgmode, hexo" scheme="http://yoursite.com/tags/emacs-orgmode-hexo/"/>
+      <category term="emacs orgmode hexo" scheme="http://yoursite.com/tags/emacs-orgmode-hexo/"/>
     
   </entry>
   
