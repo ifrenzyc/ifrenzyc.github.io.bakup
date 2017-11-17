@@ -72,7 +72,7 @@
     <link href="http://yoursite.com/2017/11/16/mysql-streaming/"/>
     <id>http://yoursite.com/2017/11/16/mysql-streaming/</id>
     <published>2017-11-16T09:39:34.000Z</published>
-    <updated>2017-11-17T08:19:09.233Z</updated>
+    <updated>2017-11-17T08:22:52.296Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>Client Side Cursor</li>
@@ -124,7 +124,9 @@
       <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
     
     
-      <category term="mysql java" scheme="http://yoursite.com/tags/mysql-java/"/>
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
@@ -561,7 +563,7 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
     <link href="http://yoursite.com/2017/06/04/blogging-with-hexo-orgmode/"/>
     <id>http://yoursite.com/2017/06/04/blogging-with-hexo-orgmode/</id>
     <published>2017-06-04T00:36:32.000Z</published>
-    <updated>2017-11-17T08:19:17.510Z</updated>
+    <updated>2017-11-17T08:22:42.785Z</updated>
     
     <content type="html"><![CDATA[<p>使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。</p>
 <h1 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h1><h2 id="使用-orgmode-来编辑文档"><a href="#使用-orgmode-来编辑文档" class="headerlink" title="使用 orgmode 来编辑文档"></a>使用 orgmode 来编辑文档</h2><p>感谢 CodeFalling 插件：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a></p>
@@ -619,7 +621,11 @@ PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 J
       <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
     
     
-      <category term="emacs orgmode hexo" scheme="http://yoursite.com/tags/emacs-orgmode-hexo/"/>
+      <category term="emacs" scheme="http://yoursite.com/tags/emacs/"/>
+    
+      <category term="orgmode" scheme="http://yoursite.com/tags/orgmode/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   
