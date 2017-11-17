@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="Client Side Cursor Server Side Cursor  在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（java.lang.OutOfMemoryError: Java heap spac">
+<meta name="description" content="Client Side Cursor Server Side Cursor">
 <meta name="keywords" content="mysql,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL Streaming 的使用和约束">
 <meta property="og:url" content="http://yoursite.com/2017/11/16/mysql-streaming/index.html">
 <meta property="og:site_name" content="ITSYC&#39;s Blog">
-<meta property="og:description" content="Client Side Cursor Server Side Cursor  在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（java.lang.OutOfMemoryError: Java heap spac">
-<meta property="og:updated_time" content="2017-11-17T08:22:52.296Z">
+<meta property="og:description" content="Client Side Cursor Server Side Cursor">
+<meta property="og:updated_time" content="2017-11-17T12:38:53.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL Streaming 的使用和约束">
-<meta name="twitter:description" content="Client Side Cursor Server Side Cursor  在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（java.lang.OutOfMemoryError: Java heap spac">
+<meta name="twitter:description" content="Client Side Cursor Server Side Cursor">
 
 
 
@@ -357,6 +357,7 @@
 <li>Client Side Cursor</li>
 <li>Server Side Cursor</li>
 </ul>
+<a id="more"></a>
 <p>在 MySQL 中查询超大结果集时，由于 MySQL JDBC 的 ResultSet 默认是接收完全部数据后再交由应用程序进行处理的。对于数据量很大的查询（如报表统计）、有限的 JVM 内存等程序，很容易就照成应用程序 OOM 异常（<code>java.lang.OutOfMemoryError: Java heap space</code>）。对于这个错误解决起来也很简单。</p>
 <p>MySQL JDBC 支持客户端的流方式（Streaming）读取数据，即应用程序一边从数据库拉取数据，每获取到一条数据后就可以立即丢给业务逻辑程序处理。代码实现也很简单：</p>
 <p>只要在初始化 Statement 的时候，设置这几个参数即可：<code>ResultSet.TYPE_FORWARD_ONLY</code>、<code>ResultSet.CONCUR_READ_ONLY</code>、<code>Integer.MIN_VALUE</code>。</p>

@@ -352,53 +352,14 @@
 
       
         
-          
-            <p>使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。</p>
-<h1 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h1><h2 id="使用-orgmode-来编辑文档"><a href="#使用-orgmode-来编辑文档" class="headerlink" title="使用 orgmode 来编辑文档"></a>使用 orgmode 来编辑文档</h2><p>感谢 CodeFalling 插件：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a></p>
-<h3 id="禁止-hexo-renderer-org-生成-toc"><a href="#禁止-hexo-renderer-org-生成-toc" class="headerlink" title="禁止 hexo-renderer-org 生成 toc"></a>禁止 hexo-renderer-org 生成 toc</h3><p><strong>方法一：</strong><br>在每篇文章前面加上 =#+OPTIONS: toc:nil= 。</p>
-<p><strong>方法二：</strong><br>统一设置。</p>
-<p>参考：<a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">CodeFalling/hexo-renderer-org - GitHub</a>。</p>
-<h2 id="hexo-asset-image"><a href="#hexo-asset-image" class="headerlink" title="hexo-asset-image"></a>hexo-asset-image</h2><p>配合这个插件使用：<br><a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="external">https://github.com/CodeFalling/hexo-asset-image</a>  这个插件值得使用</p>
-<ul>
-<li><a href="http://www.tuicool.com/articles/umEBVfI" target="_blank" rel="external">在 hexo 中无痛使用本地图片</a></li>
-<li><a href="http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/" target="_blank" rel="external">hexo 中完美插入本地图片</a></li>
-</ul>
-<h3 id="其他解决方案"><a href="#其他解决方案" class="headerlink" title="其他解决方案"></a>其他解决方案</h3><p>图床</p>
-<h2 id="使用-Emacs-来生成博客静态页面及启停-Hexo"><a href="#使用-Emacs-来生成博客静态页面及启停-Hexo" class="headerlink" title="使用 Emacs 来生成博客静态页面及启停 Hexo"></a>使用 Emacs 来生成博客静态页面及启停 Hexo</h2><p>参考：<a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a></p>
-<h2 id="RSS-插件"><a href="#RSS-插件" class="headerlink" title="RSS 插件"></a>RSS 插件</h2><p>支持 RSS：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-feed --save</div></pre></td></tr></table></figure></p>
-<p>启动服务器，用浏览器打开 <a href="http://localhost:4000/atom.xml，就可以看到" target="_blank" rel="external">http://localhost:4000/atom.xml，就可以看到</a> RSS 已经生效了。</p>
-<p>关于 RSS 的设置。</p>
-<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>Hexo 有丰富的主题资源可以使用，其中比较知名的的是 NexT 主题。</p>
-<p>不同的主题配置会很不一样。</p>
-<p><strong>其他一些好看的主题：</strong></p>
-<ul>
-<li><a href="https://github.com/7ye/maupassant-hexo" target="_blank" rel="external">7ye/maupassant-hexo - GitHub</a></li>
-</ul>
-<h2 id="Wiki-Theme-For-Hexo"><a href="#Wiki-Theme-For-Hexo" class="headerlink" title="Wiki Theme For Hexo"></a>Wiki Theme For Hexo</h2><p>同样也有用于构建 Wiki 的主题，参考：<a href="http://www.jianshu.com/p/e7413116e9d4" target="_blank" rel="external">Hexo 搭建 WiKi</a>(<a href="https://github.com/wzpan/hexo-theme-wixo" target="_blank" rel="external">wzpan/hexo-theme-wixo - GitHub</a>)</p>
-<h1 id="disqus-评论"><a href="#disqus-评论" class="headerlink" title="disqus 评论"></a>disqus 评论</h1><p>$ 常用命令</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<h1 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h1><ul>
-<li><a href="https://github.com/lengyueyang/lengyueyang.github.io" target="_blank" rel="external">https://lengyueyang.github.io/</a></li>
-<li><a href="http://summerisgreen.com/blog/2016-09-30-2016-09-30-%E4%BD%BF%E7%94%A8hexo%E5%92%8Cemacs-org%E6%9D%A5%E5%86%99%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="external">使用 Hexo 和 emacs-Org 来写博客</a></li>
-<li><a href="https://weychen.github.io/2016/09/28/set-up-blog-with-hexo-org-mode/" target="_blank" rel="external">set-up-blog-with-hexo+org-mode</a></li>
-<li><a href="https://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" target="_blank" rel="external">Hexo 3.1.1 静态博客搭建指南</a></li>
-</ul>
-<h1 id="解决-NexT-主题-Tags-Categories-“Cannot-GET-tags-“-错误"><a href="#解决-NexT-主题-Tags-Categories-“Cannot-GET-tags-“-错误" class="headerlink" title="解决 NexT 主题 Tags/Categories “Cannot GET /tags/“ 错误"></a>解决 NexT 主题 Tags/Categories “Cannot GET /tags/“ 错误</h1><p><a href="https://beeant0512.github.io/2016/03/20/2016-03-20-21-50-10/" target="_blank" rel="external">Next 主题 Tags/Categories Cannot GET /tags/</a></p>
-<h1 id="一些比较不错的-Hexo-博客"><a href="#一些比较不错的-Hexo-博客" class="headerlink" title="一些比较不错的 Hexo 博客"></a>一些比较不错的 Hexo 博客</h1><ul>
-<li><a href="http://lowrank.science/" target="_blank" rel="external">Grok</a></li>
-</ul>
-<h1 id="目前问题"><a href="#目前问题" class="headerlink" title="目前问题"></a>目前问题</h1><ol>
-<li>使用 hexo-renderer-org，如果内容有 _ 的内容，下划线后面的文字都会转换成下标，目前还不知道如何处理。</li>
-</ol>
-
-          
+          <p>使用 Hexo 搭建一个个人博客的过程非常简单，参考官方文档即可 [<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">GitHub</a>]。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/04/blogging-with-hexo-orgmode/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
