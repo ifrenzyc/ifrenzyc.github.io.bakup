@@ -329,7 +329,7 @@
     <link href="http://yoursite.com/2017/11/16/mysql-streaming/"/>
     <id>http://yoursite.com/2017/11/16/mysql-streaming/</id>
     <published>2017-11-16T09:39:34.000Z</published>
-    <updated>2017-11-24T13:10:48.725Z</updated>
+    <updated>2017-11-24T13:12:47.381Z</updated>
     
     <content type="html"><![CDATA[<p>在 Oracle 下，开发人员开发 Java 连接数据库进行超大结果集的查询后处理的程序时，可以通过设置游标进行小批量、迭代多次获取数据记录，避免程序出现 OOM 异常。</p>
 <p>而 MySQL 本身并不提供游标功能，而是通过 Connector/J 客户端阻塞式逐行读取数据记录交给业务进行处理。这种“流式（Streaming）”读取看似是很快很便利方式，实际是对应用场景提出了很高的约束，使用不当容易对照成数据库链接长期占用，链接超时，消耗数据库资源等问题。</p>
@@ -369,9 +369,8 @@
 <p>而且在这种场景下，<strong>同时需要将查询结果集获取和处理程序异步化，避免由于处理程序执行慢导致整个数据库查询和获取结果集时间被拉得很长。</strong></p>
 <h3 id="什么场景下不适合使用"><a href="#什么场景下不适合使用" class="headerlink" title="什么场景下不适合使用"></a>什么场景下不适合使用</h3><p><strong>有一些场景看似可以用 Streaming 方式处理但不应该用的</strong>，比如：</p>
 <ul>
-<li><strong>场景 1：数据批量处理</strong><br>典型业务场景如：查询一批数据进行业务处理，然后将数据改成下一个流转状态的。</li>
+<li><strong>场景 1：数据批量处理</strong><br>典型业务场景如：查询一批数据进行业务处理，然后将数据改成下一个流转状态的。<br>这种场景可以采用小批量+数据业务状态查询，处理完后再获取下一批数据进行处理，依次遍历完所有待处理的记录。</li>
 </ul>
-<p>这种场景可以采用小批量+数据业务状态查询，处理完后再获取下一批数据进行处理，依次遍历完所有待处理的记录。</p>
 <h2 id="参考材料"><a href="#参考材料" class="headerlink" title="参考材料"></a>参考材料</h2><ul>
 <li><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html#ResultSet" target="_blank" rel="external">JDBC API Implementation Notes</a></li>
 <li><a href="http://hedengcheng.com/?p=771" target="_blank" rel="external">MySQL 加锁处理分析</a></li>
