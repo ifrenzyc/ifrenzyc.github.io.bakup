@@ -81,16 +81,16 @@
 
 
 
-<meta name="description" content="Last Updated 2017-07-08 Sat 00:05.Render by hexo-renderer-org with Emacs 25.2.1 (Org mode 8.2.10)">
+<meta name="description" content="+TITLE: 分布式事务知识整理+DATE: +OPTIONS: toc:nil+TAGS:+LAYOUT: post+CATEGORIES: 分布式架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式事务知识整理">
+<meta property="og:title" content="ITSYC&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2017/06/22/distributed-transactions-introduce/index.html">
 <meta property="og:site_name" content="ITSYC&#39;s Blog">
-<meta property="og:description" content="Last Updated 2017-07-08 Sat 00:05.Render by hexo-renderer-org with Emacs 25.2.1 (Org mode 8.2.10)">
-<meta property="og:updated_time" content="2017-07-07T16:05:04.000Z">
+<meta property="og:description" content="+TITLE: 分布式事务知识整理+DATE: +OPTIONS: toc:nil+TAGS:+LAYOUT: post+CATEGORIES: 分布式架构">
+<meta property="og:updated_time" content="2017-11-30T13:20:18.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式事务知识整理">
-<meta name="twitter:description" content="Last Updated 2017-07-08 Sat 00:05.Render by hexo-renderer-org with Emacs 25.2.1 (Org mode 8.2.10)">
+<meta name="twitter:title" content="ITSYC&#39;s Blog">
+<meta name="twitter:description" content="+TITLE: 分布式事务知识整理+DATE: +OPTIONS: toc:nil+TAGS:+LAYOUT: post+CATEGORIES: 分布式架构">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>分布式事务知识整理 | ITSYC's Blog</title>
+  <title> | ITSYC's Blog</title>
   
 
 
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">分布式事务知识整理</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -292,7 +292,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T22:21:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T22:20:51+08:00">
                 2017-06-22
               </time>
             
@@ -330,11 +330,7 @@
       
 
       
-        
-
-
-Last Updated 2017-07-08 Sat 00:05.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
-
+        <h1 id="TITLE-分布式事务知识整理"><a href="#TITLE-分布式事务知识整理" class="headerlink" title="+TITLE: 分布式事务知识整理"></a>+TITLE: 分布式事务知识整理</h1><h1 id="DATE"><a href="#DATE" class="headerlink" title="+DATE: "></a>+DATE: <2017-06-22 thu="" 22:21=""></2017-06-22></h1><h1 id="OPTIONS-toc-nil"><a href="#OPTIONS-toc-nil" class="headerlink" title="+OPTIONS: toc:nil"></a>+OPTIONS: toc:nil</h1><h1 id="TAGS"><a href="#TAGS" class="headerlink" title="+TAGS:"></a>+TAGS:</h1><h1 id="LAYOUT-post"><a href="#LAYOUT-post" class="headerlink" title="+LAYOUT: post"></a>+LAYOUT: post</h1><h1 id="CATEGORIES-分布式架构"><a href="#CATEGORIES-分布式架构" class="headerlink" title="+CATEGORIES: 分布式架构"></a>+CATEGORIES: 分布式架构</h1>
       
     </div>
     
@@ -358,8 +354,8 @@ Last Updated 2017-07-08 Sat 00:05.<br>Render by <a href="https://github.com/Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/05/using-plantuml-in-emacs/" rel="next" title="在 Emacs 中使用 PlantUML">
-                <i class="fa fa-chevron-left"></i> 在 Emacs 中使用 PlantUML
+              <a href="/2017/06/05/using-plantuml-in-emacs/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -422,8 +418,17 @@ Last Updated 2017-07-08 Sat 00:05.<br>Render by <a href="https://github.com/Code
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -464,7 +469,7 @@ Last Updated 2017-07-08 Sat 00:05.<br>Render by <a href="https://github.com/Code
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -522,6 +527,22 @@ Last Updated 2017-07-08 Sat 00:05.<br>Render by <a href="https://github.com/Code
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TITLE-分布式事务知识整理"><span class="nav-number">1.</span> <span class="nav-text">+TITLE: 分布式事务知识整理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DATE"><span class="nav-number">2.</span> <span class="nav-text">+DATE: </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OPTIONS-toc-nil"><span class="nav-number">3.</span> <span class="nav-text">+OPTIONS: toc:nil</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TAGS"><span class="nav-number">4.</span> <span class="nav-text">+TAGS:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LAYOUT-post"><span class="nav-number">5.</span> <span class="nav-text">+LAYOUT: post</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CATEGORIES-分布式架构"><span class="nav-number">6.</span> <span class="nav-text">+CATEGORIES: 分布式架构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
