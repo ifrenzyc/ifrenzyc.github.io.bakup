@@ -2,14 +2,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +29,33 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -30,64 +64,44 @@
 
 
 
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
 
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="mysql," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="ITSYC's Blog" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="MySQL 安装部署依赖MySQL 版本：5.7.19CenOS 版本：CentOS-7-x86_64-1704系统用户：user9（文中所有涉及到的 user9 都是指代系统用户名，需要替换成你实际部署的用户名）">
+  <meta name="description" content="MySQL 安装部署依赖MySQL 版本：5.7.19CenOS 版本：CentOS-7-x86_64-1704系统用户：user9（文中所有涉及到的 user9 都是指代系统用户名，需要替换成你实际部署的用户名）">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 安装部署">
 <meta property="og:url" content="http://yoursite.com/2017/11/17/install-mysql/index.html">
 <meta property="og:site_name" content="ITSYC&#39;s Blog">
 <meta property="og:description" content="MySQL 安装部署依赖MySQL 版本：5.7.19CenOS 版本：CentOS-7-x86_64-1704系统用户：user9（文中所有涉及到的 user9 都是指代系统用户名，需要替换成你实际部署的用户名）">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-12-01T12:13:52.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 安装部署">
@@ -95,38 +109,23 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+  <link rel="alternate" href="/atom.xml" title="ITSYC's Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2017/11/17/install-mysql/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
   };
 </script>
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2017/11/17/install-mysql/"/>
-
-
-
-
-
+  
   <title>MySQL 安装部署 | ITSYC's Blog</title>
   
 
@@ -137,9 +136,38 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -149,25 +177,28 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ITSYC's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Thoughts on life and code</p>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -175,65 +206,53 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
       
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -241,12 +260,16 @@
 
 
 
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -259,20 +282,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/17/install-mysql/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -281,45 +306,62 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MySQL 安装部署</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL 安装部署
+
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T15:49:34+08:00">
-                2017-11-17
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-11-17 15:49:34" itemprop="dateCreated datePublished" datetime="2017-11-17T15:49:34+08:00">2017-11-17</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-01 20:13:52" itemprop="dateModified" datetime="2017-12-01T20:13:52+08:00">2017-12-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -329,11 +371,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -355,50 +403,63 @@
       
         <h1 id="MySQL-安装部署"><a href="#MySQL-安装部署" class="headerlink" title="MySQL 安装部署"></a>MySQL 安装部署</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p><strong>MySQL 版本</strong>：5.7.19<br><strong>CenOS 版本</strong>：CentOS-7-x86_64-1704<br><strong>系统用户</strong>：user9（文中所有涉及到的 <code>user9</code> 都是指代系统用户名，需要替换成你实际部署的用户名）</p>
 <a id="more"></a>
-<h2 id="获取-MySQL-二机制程序"><a href="#获取-MySQL-二机制程序" class="headerlink" title="获取 MySQL 二机制程序"></a>获取 MySQL 二机制程序</h2><p>MySQL 官网提供了打包好的二进制程序包，只要下载下来、解压、配置、启动即可完成 MySQL 的部署。相当方便。下载地址：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">Download MySQL Community Server</a>。</p>
+<h2 id="获取-MySQL-二机制程序"><a href="#获取-MySQL-二机制程序" class="headerlink" title="获取 MySQL 二机制程序"></a>获取 MySQL 二机制程序</h2><p>MySQL 官网提供了打包好的二进制程序包，只要下载下来、解压、配置、启动即可完成 MySQL 的部署。相当方便。下载地址：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">Download MySQL Community Server</a>。</p>
 <p>我们这里选择下载版本为：5.7.19 的程序包：<code>mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz</code>。</p>
 <h2 id="部署程序"><a href="#部署程序" class="headerlink" title="部署程序"></a>部署程序</h2><p><strong>上传程序包到服务器</strong><br>&lt;这里自己选择熟悉的工具上传。&gt;</p>
-<p>这里假设上传程序包到 <code>~/apps</code> 目录下，<code>~/apps</code> 需要自己先手工创建。<br>上传完成后，查看上传的结果：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/apps</span></div><div class="line"><span class="meta">$</span><span class="bash"> ls -ahl</span></div><div class="line">total 611M</div><div class="line">drwxrwxr-x. 4 user9 user9  129 Sep  5 07:04 .</div><div class="line">drwx------. 4 user9 user9  143 Sep  5 07:07 ..</div><div class="line">-rw-r--r--. 1 user9 user9 611M Sep  5 07:03 mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz</div></pre></td></tr></table></figure></p>
+<p>这里假设上传程序包到 <code>~/apps</code> 目录下，<code>~/apps</code> 需要自己先手工创建。<br>上传完成后，查看上传的结果：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/apps</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ls -ahl</span></span><br><span class="line">total 611M</span><br><span class="line">drwxrwxr-x. 4 user9 user9  129 Sep  5 07:04 .</span><br><span class="line">drwx------. 4 user9 user9  143 Sep  5 07:07 ..</span><br><span class="line">-rw-r--r--. 1 user9 user9 611M Sep  5 07:03 mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz</span><br></pre></td></tr></table></figure></p>
 <p>这里可以看到我们上传的程序包。</p>
-<p><strong>解压程序包</strong><br>把程序包解压到 <code>~/apps</code> 目录，后续程序运行目录和数据目录都在这个根目录下。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/apps</span></div><div class="line"><span class="meta">$</span><span class="bash"> tar -zxvf mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz</span></div><div class="line"><span class="meta">$</span><span class="bash"> ln <span class="_">-s</span> /home/user9/apps/mysql-5.7.19-linux-glibc2.12-x86_64 /home/user9/apps/mysql  <span class="comment"># 这里创建一个软链接，方便后续配置或升级版本</span></span></div></pre></td></tr></table></figure></p>
-<h2 id="配置及初始化"><a href="#配置及初始化" class="headerlink" title="配置及初始化"></a>配置及初始化</h2><h3 id="初始化配置文件"><a href="#初始化配置文件" class="headerlink" title="初始化配置文件"></a>初始化配置文件</h3><p>我们将 MySQL 的配置文件放在 <code>~</code> 目录下，文件名为 <code>.my.cnf</code>。配置内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> vi ~/.my.cnf</span></div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> For advice on how to change settings please see</span></div><div class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></div><div class="line">[mysqld_multi]</div><div class="line">mysqld = /home/user9/apps/mysql/bin/mysqld_safe</div><div class="line">mysqladmin = /home/user9/apps/mysql/bin/mysqladmin</div><div class="line"></div><div class="line"></div><div class="line">[mysqld1]</div><div class="line"><span class="meta">#</span><span class="bash"> These are commonly <span class="built_in">set</span>, remove the <span class="comment"># and set as required.</span></span></div><div class="line">basedir = /home/user9/apps/mysql</div><div class="line">datadir = /home/user9/apps/mysqldata/mysql3309</div><div class="line">port = 3309</div><div class="line">server_id = 1</div><div class="line">socket = /home/user9/apps/mysqldata/mysql3309/mysql3309.sock</div><div class="line">pid_file = /home/user9/apps/mysqldata/mysql3309/mysql3309.pid</div><div class="line">log_error = /home/user9/apps/mysqldata/mysql3309/mysqld3309.log</div><div class="line"></div><div class="line">sync_binlog = 1</div><div class="line">log_bin = mysql-bin</div><div class="line">binlog_format = ROW</div><div class="line">binlog_ignore_db = mysql</div><div class="line">log_slave_updates</div><div class="line">skip_name_resolve</div><div class="line">explicit_defaults_for_timestamp = true</div><div class="line"></div><div class="line">sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</div><div class="line"></div><div class="line">default_storage_engine = InnoDB</div><div class="line">transaction_isolation = REPEATABLE-READ</div><div class="line">lower_case_table_names = 1</div></pre></td></tr></table></figure></p>
+<p><strong>解压程序包</strong><br>把程序包解压到 <code>~/apps</code> 目录，后续程序运行目录和数据目录都在这个根目录下。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/apps</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -zxvf mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ln <span class="_">-s</span> /home/user9/apps/mysql-5.7.19-linux-glibc2.12-x86_64 /home/user9/apps/mysql  <span class="comment"># 这里创建一个软链接，方便后续配置或升级版本</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="配置及初始化"><a href="#配置及初始化" class="headerlink" title="配置及初始化"></a>配置及初始化</h2><h3 id="初始化配置文件"><a href="#初始化配置文件" class="headerlink" title="初始化配置文件"></a>初始化配置文件</h3><p>我们将 MySQL 的配置文件放在 <code>~</code> 目录下，文件名为 <code>.my.cnf</code>。配置内容如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi ~/.my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line">[mysqld_multi]</span><br><span class="line">mysqld = /home/user9/apps/mysql/bin/mysqld_safe</span><br><span class="line">mysqladmin = /home/user9/apps/mysql/bin/mysqladmin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqld1]</span><br><span class="line"><span class="meta">#</span><span class="bash"> These are commonly <span class="built_in">set</span>, remove the <span class="comment"># and set as required.</span></span></span><br><span class="line">basedir = /home/user9/apps/mysql</span><br><span class="line">datadir = /home/user9/apps/mysqldata/mysql3309</span><br><span class="line">port = 3309</span><br><span class="line">server_id = 1</span><br><span class="line">socket = /home/user9/apps/mysqldata/mysql3309/mysql3309.sock</span><br><span class="line">pid_file = /home/user9/apps/mysqldata/mysql3309/mysql3309.pid</span><br><span class="line">log_error = /home/user9/apps/mysqldata/mysql3309/mysqld3309.log</span><br><span class="line"></span><br><span class="line">sync_binlog = 1</span><br><span class="line">log_bin = mysql-bin</span><br><span class="line">binlog_format = ROW</span><br><span class="line">binlog_ignore_db = mysql</span><br><span class="line">log_slave_updates</span><br><span class="line">skip_name_resolve</span><br><span class="line">explicit_defaults_for_timestamp = true</span><br><span class="line"></span><br><span class="line">sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"></span><br><span class="line">default_storage_engine = InnoDB</span><br><span class="line">transaction_isolation = REPEATABLE-READ</span><br><span class="line">lower_case_table_names = 1</span><br></pre></td></tr></table></figure></p>
 <p>这里你也可以用其他工具编辑好，将 <code>.my.cnf</code> 文件放到 <code>~</code> 目录下即可。</p>
-<h3 id="初始化环境配置"><a href="#初始化环境配置" class="headerlink" title="初始化环境配置"></a>初始化环境配置</h3><p>我们需要将 MySQL 的二进制脚本加入到环境变量里面，这里我们配置到 <code>~/.bash_profile</code> 文件中：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> vi ~/.bash_profile</span></div><div class="line"></div><div class="line">PATH=$PATH:$HOME/apps/mysql/bin</div><div class="line">export PATH</div></pre></td></tr></table></figure></p>
+<h3 id="初始化环境配置"><a href="#初始化环境配置" class="headerlink" title="初始化环境配置"></a>初始化环境配置</h3><p>我们需要将 MySQL 的二进制脚本加入到环境变量里面，这里我们配置到 <code>~/.bash_profile</code> 文件中：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi ~/.bash_profile</span></span><br><span class="line"></span><br><span class="line">PATH=$PATH:$HOME/apps/mysql/bin</span><br><span class="line">export PATH</span><br></pre></td></tr></table></figure></p>
 <p>修改完后 source 一下：<code>source ~/.bash_profile</code>。</p>
-<h3 id="初始化数据目录"><a href="#初始化数据目录" class="headerlink" title="初始化数据目录"></a>初始化数据目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mkdir -p /home/user9/apps/mysqldata</span></div><div class="line"><span class="meta">$</span><span class="bash"> mysql_install_db --defaults-file=/home/user9/.my.cnf --user=user9 --basedir=/home/user9/apps/mysql --datadir=/home/user9/apps/mysqldata/mysql3309</span></div></pre></td></tr></table></figure>
-<p>日志输出如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mysql_install_db --defaults-file=/home/user9/.my.cnf --user=user9 --basedir=/home/user9/apps/mysql --datadir=/home/user9/apps/mysqldata/mysql3309</span></div><div class="line">2017-09-05 07:07:48 [WARNING] mysql_install_db is deprecated. Please consider switching to mysqld --initialize</div><div class="line">2017-09-05 07:07:51 [WARNING] The bootstrap log isn't empty:</div><div class="line">2017-09-05 07:07:51 [WARNING] 2017-09-05T07:07:49.033474Z 0 [Warning] --bootstrap is deprecated. Please consider using --initialize instead</div><div class="line">2017-09-05T07:07:49.035706Z 0 [Warning] Changed limits: max_open_files: 1024 (requested 5000)</div><div class="line">2017-09-05T07:07:49.035716Z 0 [Warning] Changed limits: table_open_cache: 431 (requested 2000)</div></pre></td></tr></table></figure></p>
+<h3 id="初始化数据目录"><a href="#初始化数据目录" class="headerlink" title="初始化数据目录"></a>初始化数据目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p /home/user9/apps/mysqldata</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mysql_install_db --defaults-file=/home/user9/.my.cnf --user=user9 --basedir=/home/user9/apps/mysql --datadir=/home/user9/apps/mysqldata/mysql3309</span></span><br></pre></td></tr></table></figure>
+<p>日志输出如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysql_install_db --defaults-file=/home/user9/.my.cnf --user=user9 --basedir=/home/user9/apps/mysql --datadir=/home/user9/apps/mysqldata/mysql3309</span></span><br><span class="line">2017-09-05 07:07:48 [WARNING] mysql_install_db is deprecated. Please consider switching to mysqld --initialize</span><br><span class="line">2017-09-05 07:07:51 [WARNING] The bootstrap log isn't empty:</span><br><span class="line">2017-09-05 07:07:51 [WARNING] 2017-09-05T07:07:49.033474Z 0 [Warning] --bootstrap is deprecated. Please consider using --initialize instead</span><br><span class="line">2017-09-05T07:07:49.035706Z 0 [Warning] Changed limits: max_open_files: 1024 (requested 5000)</span><br><span class="line">2017-09-05T07:07:49.035716Z 0 [Warning] Changed limits: table_open_cache: 431 (requested 2000)</span><br></pre></td></tr></table></figure></p>
 <p>这里提示我们 <code>mysql_install_db</code> 脚本已经 <code>deprecated</code> 了，不用管。</p>
 <ul>
 <li><code>--datadir</code> 指定了 MySQL 数据存放的路径。</li>
 </ul>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mysqld_multi --defaults-extra-file=/home/user9/.my.cnf --user=user9 start 1</span></div></pre></td></tr></table></figure>
-<p>日志输出如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mysqld_multi --defaults-extra-file=/home/user9/.my.cnf --user=user9 start 1</span></div><div class="line">WARNING: Log file disabled. Maybe directory or file isn't writable?</div><div class="line">mysqld_multi log file version 2.16; run: Tue Sep  5 07:08:17 2017</div><div class="line"></div><div class="line">Starting MySQL servers</div></pre></td></tr></table></figure></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysqld_multi --defaults-extra-file=/home/user9/.my.cnf --user=user9 start 1</span></span><br></pre></td></tr></table></figure>
+<p>日志输出如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysqld_multi --defaults-extra-file=/home/user9/.my.cnf --user=user9 start 1</span></span><br><span class="line">WARNING: Log file disabled. Maybe directory or file isn't writable?</span><br><span class="line">mysqld_multi log file version 2.16; run: Tue Sep  5 07:08:17 2017</span><br><span class="line"></span><br><span class="line">Starting MySQL servers</span><br></pre></td></tr></table></figure></p>
 <p>可以看到，MySQL 实例已经启动成功了！</p>
-<h2 id="用户密码及远程访问"><a href="#用户密码及远程访问" class="headerlink" title="用户密码及远程访问"></a>用户密码及远程访问</h2><h3 id="初始化-root-用户密码"><a href="#初始化-root-用户密码" class="headerlink" title="初始化 root 用户密码"></a>初始化 root 用户密码</h3><p>启动服务成功后，MySQL 实例默认会在当前用户的 $HOME 目录下生成一个 <code>~/.mysql_secret</code> 文件，里面记录了 MySQL 默认 root 用户的初始化密码。<br>可以通过一下命令登录：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mysql -uroot -p  -S /home/user9/apps/mysqldata/mysql3309/mysql3309.sock</span></div><div class="line">Enter password:</div></pre></td></tr></table></figure></p>
+<h2 id="用户密码及远程访问"><a href="#用户密码及远程访问" class="headerlink" title="用户密码及远程访问"></a>用户密码及远程访问</h2><h3 id="初始化-root-用户密码"><a href="#初始化-root-用户密码" class="headerlink" title="初始化 root 用户密码"></a>初始化 root 用户密码</h3><p>启动服务成功后，MySQL 实例默认会在当前用户的 $HOME 目录下生成一个 <code>~/.mysql_secret</code> 文件，里面记录了 MySQL 默认 root 用户的初始化密码。<br>可以通过一下命令登录：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysql -uroot -p  -S /home/user9/apps/mysqldata/mysql3309/mysql3309.sock</span></span><br><span class="line">Enter password:</span><br></pre></td></tr></table></figure></p>
 <p><code>Enter password:</code> 处输入我们在 <code>~/.mysql_secret</code> 文件中看到的默认密码。</p>
-<p>登录后，我们需要修改新密码，执行以下命令进行修改（新密码为：<code>Aa123456</code>）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SET PASSWORD = PASSWORD(&apos;Aa123456&apos;);</div><div class="line">mysql&gt; flush privileges;</div></pre></td></tr></table></figure></p>
-<h3 id="配置-root-用户远程访问"><a href="#配置-root-用户远程访问" class="headerlink" title="配置 root 用户远程访问"></a>配置 root 用户远程访问</h3><p>默认安装的 MySQL 实例 root 用户只有本地访问权限，需要通过修改 <code>mysql.user</code> 表，给 root 用户授权。<br>执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;Aa123456&apos; WITH GRANT OPTION;</div><div class="line">mysql&gt; flush privileges;</div></pre></td></tr></table></figure></p>
+<p>登录后，我们需要修改新密码，执行以下命令进行修改（新密码为：<code>Aa123456</code>）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET PASSWORD = PASSWORD(&apos;Aa123456&apos;);</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置-root-用户远程访问"><a href="#配置-root-用户远程访问" class="headerlink" title="配置 root 用户远程访问"></a>配置 root 用户远程访问</h3><p>默认安装的 MySQL 实例 root 用户只有本地访问权限，需要通过修改 <code>mysql.user</code> 表，给 root 用户授权。<br>执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;Aa123456&apos; WITH GRANT OPTION;</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure></p>
 <p><strong>==至此，MySQL 的安装及配置全部完成！==</strong></p>
-<h2 id="访问-MySQL"><a href="#访问-MySQL" class="headerlink" title="访问 MySQL"></a>访问 MySQL</h2><p>安装完成后，我们就可以正常访问该 MySQL 实例了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mysql -h127.0.0.1 -P3309 -uroot -p</span></div><div class="line">Password: &lt;这里输入我们设置好的密码：Aa123456&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h2><h3 id="进入-MySQL"><a href="#进入-MySQL" class="headerlink" title="进入 MySQL"></a>进入 MySQL</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> mysql -h127.0.0.1 -P3309 -uroot -p</span></div><div class="line">Password:</div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="切换到我们要的-Database-上"><a href="#切换到我们要的-Database-上" class="headerlink" title="切换到我们要的 Database 上"></a>切换到我们要的 Database 上</h3><p>这里假设我们要用到的数据库名叫：itrace_startup<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mysql&gt; use itrace_startup;</div><div class="line"></div><div class="line">### 如果没有这个库我们要先创建：</div><div class="line">mysql&gt; create database itrace_startup;</div><div class="line">mysql&gt; use itrace_startup;</div></pre></td></tr></table></figure></p>
-<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>这里假设我们要导入的SQL文件名叫：<code>cust.sql</code>，且放在 <code>/home/vagrant</code> 目录下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source /home/vagrant/cust.sql</div></pre></td></tr></table></figure></p>
+<h2 id="访问-MySQL"><a href="#访问-MySQL" class="headerlink" title="访问 MySQL"></a>访问 MySQL</h2><p>安装完成后，我们就可以正常访问该 MySQL 实例了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysql -h127.0.0.1 -P3309 -uroot -p</span></span><br><span class="line">Password: &lt;这里输入我们设置好的密码：Aa123456&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h2><h3 id="进入-MySQL"><a href="#进入-MySQL" class="headerlink" title="进入 MySQL"></a>进入 MySQL</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mysql -h127.0.0.1 -P3309 -uroot -p</span></span><br><span class="line">Password:</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="切换到我们要的-Database-上"><a href="#切换到我们要的-Database-上" class="headerlink" title="切换到我们要的 Database 上"></a>切换到我们要的 Database 上</h3><p>这里假设我们要用到的数据库名叫：itrace_startup<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use itrace_startup;</span><br><span class="line"></span><br><span class="line">### 如果没有这个库我们要先创建：</span><br><span class="line">mysql&gt; create database itrace_startup;</span><br><span class="line">mysql&gt; use itrace_startup;</span><br></pre></td></tr></table></figure></p>
+<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>这里假设我们要导入的SQL文件名叫：<code>cust.sql</code>，且放在 <code>/home/vagrant</code> 目录下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; source /home/vagrant/cust.sql</span><br></pre></td></tr></table></figure></p>
 <p><strong>==导入数据文件 <code>cust.sql</code> 成功！==</strong></p>
 
       
     </div>
+
+    
+
+    
+      
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
             <a href="/tags/mysql/" rel="tag"># mysql</a>
@@ -424,7 +485,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/17/install-mariadb/" rel="prev" title="MariaDB 的安装部署">
+              <a href="/2017/11/17/安装 MariaDB/" rel="prev" title="MariaDB 的安装部署">
                 MariaDB 的安装部署 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -442,17 +503,10 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -472,7 +526,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -480,120 +533,130 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/itsyc.jpg"
-                alt="Yang Chuang" />
-            
-              <p class="site-author-name" itemprop="name">Yang Chuang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
 
-          <nav class="site-state motion-element">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">Yang Chuang</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
 
-          </nav>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
           
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ifrenzyc" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://twitter.com/ifrenzyc" target="_blank" title="Twitter">
-                    
-                      <i class="fa fa-fw fa-globe"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://douban.com/people/ifrenzyc" target="_blank" title="豆瓣">
-                    
-                      <i class="fa fa-fw fa-globe"></i>豆瓣</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://www.zhihu.com/people/ifrenzyc" target="_blank" title="知乎">
-                    
-                      <i class="fa fa-fw fa-globe"></i>知乎</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-
-          
-
         </div>
-      </section>
+      </div>
 
       
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -601,7 +664,7 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
       
 
@@ -609,6 +672,7 @@
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -617,17 +681,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Yang Chuang</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -635,12 +701,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -661,11 +728,15 @@
 
     
 
+    
+
+    
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -679,12 +750,6 @@
 
 
 
-  
-
-
-
-
-
 
 
 
@@ -694,41 +759,30 @@
 
   
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+
+
 
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -736,24 +790,21 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
+  
 
   
 
@@ -763,13 +814,7 @@
 
 
 
-	
 
-
-
-
-
-  
 
 
 
@@ -788,24 +833,34 @@
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
 
-  
-  
 
-  
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
 
-  
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 

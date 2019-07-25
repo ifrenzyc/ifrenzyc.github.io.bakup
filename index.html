@@ -2,14 +2,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +29,33 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -30,98 +64,63 @@
 
 
 
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="ITSYC's Blog" type="application/atom+xml" />
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="ITSYC&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="ITSYC&#39;s Blog">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ITSYC&#39;s Blog">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
     }
   };
 </script>
 
+  <meta property="og:type" content="website">
+<meta property="og:title" content="ITSYC&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="ITSYC&#39;s Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ITSYC&#39;s Blog">
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+
+  <link rel="alternate" href="/atom.xml" title="ITSYC's Blog" type="application/atom+xml">
 
 
 
+  
+  
+  <link rel="canonical" href="http://yoursite.com/">
 
 
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
   <title>ITSYC's Blog</title>
   
 
@@ -132,9 +131,38 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -145,25 +173,28 @@
   page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ITSYC's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Thoughts on life and code</p>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -171,65 +202,53 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
       
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -237,12 +256,16 @@
 
 
 
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -255,20 +278,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/17/install-zabbix/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -279,45 +304,62 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/17/install-zabbix/" itemprop="url">安装部署 Zabbix</a></h1>
+                
+                <a href="/2017/11/17/install-zabbix/" class="post-title-link" itemprop="url">安装部署 Zabbix</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T20:19:34+08:00">
-                2017-11-17
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-11-17 20:19:34" itemprop="dateCreated datePublished" datetime="2017-11-17T20:19:34+08:00">2017-11-17</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-30 21:19:23" itemprop="dateModified" datetime="2017-11-30T21:19:23+08:00">2017-11-30</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/监控系统/" itemprop="url" rel="index">
-                    <span itemprop="name">监控系统</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/监控系统/" itemprop="url" rel="index"><span itemprop="name">监控系统</span></a></span>
 
                 
                 
@@ -327,11 +369,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -354,21 +402,31 @@
         
           <h1 id="Zabbix-安装教程"><a href="#Zabbix-安装教程" class="headerlink" title="Zabbix 安装教程"></a>Zabbix 安装教程</h1><h2 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明"></a>安装说明</h2><p>本文档介绍的安装步骤是基于 rpm 包方式安装 Zabbix 的，不涉及源码编译安装。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/17/install-zabbix/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/17/install-zabbix/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -401,20 +459,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/17/install-mariadb/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/17/安装 MariaDB/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -425,45 +485,62 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/17/install-mariadb/" itemprop="url">MariaDB 的安装部署</a></h1>
+                
+                <a href="/2017/11/17/安装 MariaDB/" class="post-title-link" itemprop="url">MariaDB 的安装部署</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T20:19:34+08:00">
-                2017-11-17
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-11-17 20:19:34" itemprop="dateCreated datePublished" datetime="2017-11-17T20:19:34+08:00">2017-11-17</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-30 21:19:46" itemprop="dateModified" datetime="2017-11-30T21:19:46+08:00">2017-11-30</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -473,11 +550,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -501,21 +584,31 @@
           <h1 id="MySQL-的版本选择及安装部署"><a href="#MySQL-的版本选择及安装部署" class="headerlink" title="MySQL 的版本选择及安装部署"></a>MySQL 的版本选择及安装部署</h1><p>KMAS 前后端均采用 MySQL 协议实现，由于 MySQL 及 MariaDB 均是用 MySQL 协议实现的。因此，这两个数据库都可以使用，且使用上无差别。除配置及一些特殊特性外，MySQL 和 MariaDB 基本可以互相替换。</p>
 <p>由于 MariaDB 是基于 MySQL 分支开发的，对一些 bug 修复和特性支持做得更好一些，我们在使用 KMAS 的过程中，比较推荐使用 MariaDB。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/17/install-mariadb/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/17/安装 MariaDB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -548,20 +641,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/17/install-mysql/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -572,45 +667,62 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/17/install-mysql/" itemprop="url">MySQL 安装部署</a></h1>
+                
+                <a href="/2017/11/17/install-mysql/" class="post-title-link" itemprop="url">MySQL 安装部署</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T15:49:34+08:00">
-                2017-11-17
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-11-17 15:49:34" itemprop="dateCreated datePublished" datetime="2017-11-17T15:49:34+08:00">2017-11-17</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-01 20:13:52" itemprop="dateModified" datetime="2017-12-01T20:13:52+08:00">2017-12-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -620,11 +732,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -647,21 +765,31 @@
         
           <h1 id="MySQL-安装部署"><a href="#MySQL-安装部署" class="headerlink" title="MySQL 安装部署"></a>MySQL 安装部署</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p><strong>MySQL 版本</strong>：5.7.19<br><strong>CenOS 版本</strong>：CentOS-7-x86_64-1704<br><strong>系统用户</strong>：user9（文中所有涉及到的 <code>user9</code> 都是指代系统用户名，需要替换成你实际部署的用户名）</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/17/install-mysql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/17/install-mysql/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -694,20 +822,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/mysql-streaming/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -718,45 +848,62 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/16/mysql-streaming/" itemprop="url">MySQL Streaming 的使用和约束</a></h1>
+                
+                <a href="/2017/11/16/mysql-streaming/" class="post-title-link" itemprop="url">MySQL Streaming 的使用和约束</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T17:39:34+08:00">
-                2017-11-16
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-11-16 17:39:34" itemprop="dateCreated datePublished" datetime="2017-11-16T17:39:34+08:00">2017-11-16</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-30 21:18:35" itemprop="dateModified" datetime="2017-11-30T21:18:35+08:00">2017-11-30</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -766,11 +913,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -794,21 +947,31 @@
           <p>在 Oracle 下，开发人员开发 Java 连接数据库进行超大结果集的查询后处理的程序时，可以通过设置游标进行小批量、迭代多次获取数据记录，避免程序出现 OOM 异常。</p>
 <p>而 MySQL 本身并不提供游标功能，而是通过 Connector/J 客户端阻塞式逐行读取数据记录交给业务进行处理。这种“流式（Streaming）”读取看似是很快很便利方式，实际是对应用场景提出了很高的约束，使用不当容易对照成数据库链接长期占用，链接超时，消耗数据库资源等问题。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/16/mysql-streaming/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/11/16/mysql-streaming/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -841,20 +1004,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/elasticsearch-best-practices/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -865,45 +1030,62 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/03/elasticsearch-best-practices/" itemprop="url">Elasticsearch 的一些使用经验</a></h1>
+                
+                <a href="/2017/07/03/elasticsearch-best-practices/" class="post-title-link" itemprop="url">Elasticsearch 的一些使用经验</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T21:15:00+08:00">
-                2017-07-03
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-07-03 21:15:00" itemprop="dateCreated datePublished" datetime="2017-07-03T21:15:00+08:00">2017-07-03</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-07-08 00:27:14" itemprop="dateModified" datetime="2017-07-08T00:27:14+08:00">2017-07-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elastic-Stack/" itemprop="url" rel="index">
-                    <span itemprop="name">Elastic Stack</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Elastic-Stack/" itemprop="url" rel="index"><span itemprop="name">Elastic Stack</span></a></span>
 
                 
                 
@@ -913,11 +1095,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -938,25 +1126,105 @@
 
       
         
-          <p>
+          
+            
+
+<p>
 Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研究其相关设置。以下内容是自己整理的一些实践建议：
 </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/03/elasticsearch-best-practices/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+<div class="HTML">
+<p>
+&lt;!&#x2013;more&#x2013;&gt;
+</p>
+
+</div>
+
+<div id="outline-container-org2785e7a" class="outline-2">
+<h2 id="org2785e7a"><span class="section-number-2">1</span> es 配置相关</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgf02cd5c" class="outline-3">
+<h3 id="orgf02cd5c"><span class="section-number-3">1.1</span> 配置 memory<sub>lock</sub></h3>
+</div>
+
+<div id="outline-container-org9b6f776" class="outline-3">
+<h3 id="org9b6f776"><span class="section-number-3">1.2</span> master 节点数</h3>
+</div>
+</div>
+
+<div id="outline-container-org8876c4c" class="outline-2">
+<h2 id="org8876c4c"><span class="section-number-2">2</span> 索引相关</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd8630e1" class="outline-3">
+<h3 id="orgd8630e1"><span class="section-number-3">2.1</span> 拆分索引</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+索引需要按不同业务维度、运维维度拆分。
+</p>
+<ul class="org-ul">
+<li>方便业务查询使用，使每次查询能落在数据比较少的索引，避免在一个索引上查询所有内容；</li>
+<li>按时间或者业务域维度拆分索引，方便数据冷热处理；方便运维定时归档超过一定期限的索引；</li>
+</ul>
+<p>
+尽量避免都放在一个索引上。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf38cde5" class="outline-3">
+<h3 id="orgf38cde5"><span class="section-number-3">2.2</span> 对不需要分词检索字段设置 not<sub>analayzed</sub></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+对一些每次查询都是按内容全文匹配的字段，设置 type="not<sub>analayzed</sub>"，减少 es 分词，同时也是避免查询结果不准确。甚至有些字段压根就不会用来做查询用的，设置为"not<sub>indexed</sub>"。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgece2c23" class="outline-2">
+<h2 id="orgece2c23"><span class="section-number-2">3</span> jvm 相关</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgf281982" class="outline-3">
+<h3 id="orgf281982"><span class="section-number-3">3.1</span> 最好内存能分配到 &lt; 32GB</h3>
+</div>
+</div>
+
+<div id="outline-container-org86f0a49" class="outline-2">
+<h2 id="org86f0a49"><span class="section-number-2">4</span> 大规模集群的一些规划</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org262bea4" class="outline-3">
+<h3 id="org262bea4"><span class="section-number-3">4.1</span> 大集群下规划好 Data node、Master node、Client node</h3>
+</div>
+
+<div id="outline-container-org5a88d20" class="outline-3">
+<h3 id="org5a88d20"><span class="section-number-3">4.2</span> 大规模环境下，拆分多个集群</h3>
+</div>
+</div>
+
+Last Updated 2017-07-08 Sat 00:27.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 27.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.4)
+
+          
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -989,20 +1257,22 @@ Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/maintain-elasticsearch/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -1013,45 +1283,62 @@ Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/03/maintain-elasticsearch/" itemprop="url">Elasticsearch 日常运维操作</a></h1>
+                
+                <a href="/2017/07/03/maintain-elasticsearch/" class="post-title-link" itemprop="url">Elasticsearch 日常运维操作</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T21:15:00+08:00">
-                2017-07-03
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-07-03 21:15:00" itemprop="dateCreated datePublished" datetime="2017-07-03T21:15:00+08:00">2017-07-03</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-07-08 00:04:54" itemprop="dateModified" datetime="2017-07-08T00:04:54+08:00">2017-07-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elastic-Stack/" itemprop="url" rel="index">
-                    <span itemprop="name">Elastic Stack</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Elastic-Stack/" itemprop="url" rel="index"><span itemprop="name">Elastic Stack</span></a></span>
 
                 
                 
@@ -1061,11 +1348,17 @@ Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -1090,18 +1383,26 @@ Elasticsearch 上手使用比较容易，但是想真正用好，却要深入研
             
 
 
-Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 27.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.4)
 
           
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1134,20 +1435,22 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/monitoring-elastic-stack/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -1158,45 +1461,62 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/03/monitoring-elastic-stack/" itemprop="url">Elastic Stack 的相关监控</a></h1>
+                
+                <a href="/2017/07/03/monitoring-elastic-stack/" class="post-title-link" itemprop="url">Elastic Stack 的相关监控</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T21:15:00+08:00">
-                2017-07-03
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-07-03 21:15:00" itemprop="dateCreated datePublished" datetime="2017-07-03T21:15:00+08:00">2017-07-03</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-07-08 00:04:51" itemprop="dateModified" datetime="2017-07-08T00:04:51+08:00">2017-07-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elastic-Stack/" itemprop="url" rel="index">
-                    <span itemprop="name">Elastic Stack</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Elastic-Stack/" itemprop="url" rel="index"><span itemprop="name">Elastic Stack</span></a></span>
 
                 
                 
@@ -1206,11 +1526,17 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -1235,8 +1561,8 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
             
 
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 使用 X-Pack 进行监控</h2>
+<div id="outline-container-orgee37036" class="outline-2">
+<h2 id="orgee37036"><span class="section-number-2">1</span> 使用 X-Pack 进行监控</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 不差钱
@@ -1244,8 +1570,8 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 插件</h2>
+<div id="outline-container-org71abfc1" class="outline-2">
+<h2 id="org71abfc1"><span class="section-number-2">2</span> 插件</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 elasticsearch-head
@@ -1253,8 +1579,8 @@ elasticsearch-head
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 监控 Elasticsearch 的状态</h2>
+<div id="outline-container-orgf8c5615" class="outline-2">
+<h2 id="orgf8c5615"><span class="section-number-2">3</span> 监控 Elasticsearch 的状态</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Green</b>
@@ -1270,22 +1596,30 @@ elasticsearch-head
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 基于 Monitoring API 自定义监控</h2>
+<div id="outline-container-orgb657a1e" class="outline-2">
+<h2 id="orgb657a1e"><span class="section-number-2">4</span> 基于 Monitoring API 自定义监控</h2>
 </div>
 
-Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 27.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.4)
 
           
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1318,20 +1652,22 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -1342,45 +1678,62 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/" itemprop="url">通过 Zabbix 实现 Logstash 的监控</a></h1>
+                
+                <a href="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/" class="post-title-link" itemprop="url">通过 Zabbix 实现 Logstash 的监控</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T10:12:00+08:00">
-                2017-06-27
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-06-27 10:12:00" itemprop="dateCreated datePublished" datetime="2017-06-27T10:12:00+08:00">2017-06-27</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-07-08 00:04:48" itemprop="dateModified" datetime="2017-07-08T00:04:48+08:00">2017-07-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elastic-Stack/" itemprop="url" rel="index">
-                    <span itemprop="name">Elastic Stack</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Elastic-Stack/" itemprop="url" rel="index"><span itemprop="name">Elastic Stack</span></a></span>
 
                 
                 
@@ -1390,11 +1743,17 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -1415,29 +1774,104 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
       
         
-          <p>
-参考：<a href="https://kibana.logstash.es/content/logstash/performance/monitor/heartbeat.html" target="_blank" rel="external">监控方案</a>
+          
+            
+
+<p>
+参考：<a href="https://kibana.logstash.es/content/logstash/performance/monitor/heartbeat.html" target="_blank" rel="noopener">监控方案</a>
 </p>
 
 <p>
 由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。
 </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+<div class="HTML">
+<p>
+&lt;!&#x2013;more&#x2013;&gt;
+</p>
+
+</div>
+
+<p>
+<b>Logstash Pipeline</b> 模型
+<img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./logstash-pipeline.png" alt="logstash-pipeline.png">
+</p>
+
+<p>
+由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安装方式非常简单[参考：<a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="noopener">zabbix|Logstash</a> ]：
+</p>
+
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ bin/logstash-plugin install logstash-output-zabbix</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>
+配置 Zabbix 的数据采集：
+</p>
+<ol class="org-ol">
+<li>配置新的主机名为 “logstash-indexer-1”</li>
+</ol>
+
+<div class="figure">
+<p><img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./zabbix-host.png" alt="zabbix-host.png">
+</p>
+</div>
+
+<ol class="org-ol">
+<li>配置采集项</li>
+</ol>
+
+<div class="figure">
+<p><img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./zabbix-logstash-item.png" alt="zabbix-logstash-item.png">
+</p>
+</div>
+
+<p>
+修改 logstash 的配置文件，增加 metrics filter 和 zabbix output：
+</p>
+<div class="org-src-container">
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">input {</span><br><span class="line">  ...</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">filter {</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  metrics {</span><br><span class="line">    meter =&gt; <span class="string">"events"</span>  <span class="comment"># 统计每一个经过 filter 的事件</span></span><br><span class="line">    add_tag =&gt; <span class="string">"metric"</span></span><br><span class="line">    add_field =&gt; {<span class="string">"[@metadata][zabbix_key]"</span> =&gt; <span class="string">"logstash_events"</span>}  <span class="comment"># zabbix item 的 key，这个要和 zabbix 的配置一致</span></span><br><span class="line">    add_field =&gt; { <span class="string">"[@metadata][zabbix_host]"</span> =&gt; <span class="string">"logstash-indexer-1"</span> }  <span class="comment"># zabbix 写入的主机</span></span><br><span class="line">    flush_interval =&gt; <span class="number">10</span>  <span class="comment"># 每隔 10s 写一次</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">output {</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="string">"metric"</span> <span class="keyword">in</span> [tags] {</span><br><span class="line">    zabbix {</span><br><span class="line">      zabbix_server_host =&gt; <span class="string">"192.168.56.113"</span></span><br><span class="line">      zabbix_host =&gt; <span class="string">"[@metadata][zabbix_host]"</span></span><br><span class="line">      zabbix_key =&gt; <span class="string">"[@metadata][zabbix_key]"</span></span><br><span class="line">      zabbix_value =&gt; <span class="string">"[events][count]"</span>  <span class="comment"># [events][count] 是事件统计数据，还有其他字段内容，具体参考官网文档</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+配置好 logstash 后，reload 配置或重启服务即可。
+具体配置参考官方文档说明。
+</p>
+
+<p>
+至此，查看 Zabbix web 界面的 item 项即可看到监控 TPS 的图表了：
+<img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./logstash-tps-graph.png" alt="logstash-tps-graph.png">
+</p>
+
+<div id="outline-container-org6e0362a" class="outline-2">
+<h2 id="org6e0362a"><span class="section-number-2">1</span> 参考内容</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-metrics.html" target="_blank" rel="noopener">metrics</a></li>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="noopener">zabbix</a></li>
+</ul>
+</div>
+</div>
+
+Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 27.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.4)
+
+          
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1470,20 +1904,22 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/22/distributed-transactions-introduce/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -1494,37 +1930,67 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/22/distributed-transactions-introduce/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2017/06/22/distributed-transactions-introduce/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T22:20:51+08:00">
-                2017-06-22
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
-
+              <time title="Created: 2017-06-22 22:20:51" itemprop="dateCreated datePublished" datetime="2017-06-22T22:20:51+08:00">2017-06-22</time>
+            </span>
           
 
           
             
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-30 21:20:18" itemprop="dateModified" datetime="2017-11-30T21:20:18+08:00">2017-11-30</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -1551,12 +2017,20 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1589,20 +2063,22 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/using-plantuml-in-emacs/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -1613,37 +2089,67 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/05/using-plantuml-in-emacs/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2017/06/05/using-plantuml-in-emacs/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T17:39:32+08:00">
-                2017-06-05
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
-
+              <time title="Created: 2017-06-05 17:39:32" itemprop="dateCreated datePublished" datetime="2017-06-05T17:39:32+08:00">2017-06-05</time>
+            </span>
           
 
           
             
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-30 21:18:46" itemprop="dateModified" datetime="2017-11-30T21:18:46+08:00">2017-11-30</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -1666,26 +2172,36 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
         
           <h1 id="TITLE-在-Emacs-中使用-PlantUML"><a href="#TITLE-在-Emacs-中使用-PlantUML" class="headerlink" title="+TITLE: 在 Emacs 中使用 PlantUML"></a>+TITLE: 在 Emacs 中使用 PlantUML</h1><h1 id="DATE"><a href="#DATE" class="headerlink" title="+DATE: "></a>+DATE: <2017-06-05 thu="" 10:12=""></2017-06-05></h1><h1 id="OPTIONS-toc-nil"><a href="#OPTIONS-toc-nil" class="headerlink" title="+OPTIONS: toc:nil"></a>+OPTIONS: toc:nil</h1><h1 id="TAGS-orgmode-plantuml"><a href="#TAGS-orgmode-plantuml" class="headerlink" title="+TAGS: orgmode, plantuml"></a>+TAGS: orgmode, plantuml</h1><h1 id="LAYOUT-post"><a href="#LAYOUT-post" class="headerlink" title="+LAYOUT: post"></a>+LAYOUT: post</h1><h1 id="CATEGORIES-Living-in-Emacs"><a href="#CATEGORIES-Living-in-Emacs" class="headerlink" title="+CATEGORIES: Living in Emacs"></a>+CATEGORIES: Living in Emacs</h1><p>PlantUML 的使用依赖与 Java 环境，因此需要在系统上先安装好 Java 环境。</p>
 <ul>
-<li>下载 PlantUML jar：[[<a href="http://plantuml.com/download][PlantUML" target="_blank" rel="external">http://plantuml.com/download][PlantUML</a> compiled Jar]]。</li>
-<li>plantuml-mode：[[<a href="https://github.com/skuro/plantuml-mode][skuro/plantuml-mode" target="_blank" rel="external">https://github.com/skuro/plantuml-mode][skuro/plantuml-mode</a> - GitHub]]</li>
+<li>下载 PlantUML jar：[[<a href="http://plantuml.com/download][PlantUML" target="_blank" rel="noopener">http://plantuml.com/download][PlantUML</a> compiled Jar]]。</li>
+<li>plantuml-mode：[[<a href="https://github.com/skuro/plantuml-mode][skuro/plantuml-mode" target="_blank" rel="noopener">https://github.com/skuro/plantuml-mode][skuro/plantuml-mode</a> - GitHub]]</li>
 </ul>
 <h1 id="BEGIN-HTML"><a href="#BEGIN-HTML" class="headerlink" title="+BEGIN_HTML"></a>+BEGIN_HTML</h1>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/05/using-plantuml-in-emacs/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/06/05/using-plantuml-in-emacs/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1714,15 +2230,12 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1738,111 +2251,119 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/itsyc.jpg"
-                alt="Yang Chuang" />
-            
-              <p class="site-author-name" itemprop="name">Yang Chuang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
 
-          <nav class="site-state motion-element">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">Yang Chuang</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
 
-          </nav>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
           
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ifrenzyc" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://twitter.com/ifrenzyc" target="_blank" title="Twitter">
-                    
-                      <i class="fa fa-fw fa-globe"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://douban.com/people/ifrenzyc" target="_blank" title="豆瓣">
-                    
-                      <i class="fa fa-fw fa-globe"></i>豆瓣</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://www.zhihu.com/people/ifrenzyc" target="_blank" title="知乎">
-                    
-                      <i class="fa fa-fw fa-globe"></i>知乎</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-
-          
-
         </div>
-      </section>
+      </div>
 
       
 
@@ -1850,6 +2371,7 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -1858,17 +2380,19 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Yang Chuang</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -1876,12 +2400,13 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -1902,11 +2427,15 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
     
 
+    
+
+    
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1920,12 +2449,6 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-  
-
-
-
-
-
 
 
 
@@ -1935,41 +2458,30 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
   
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+
+
 
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -1977,39 +2489,19 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
   
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
-
   
 
-
-
-
-	
-
-
-
-
-
   
-
-
-
 
 
   
@@ -2025,24 +2517,43 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
 
-  
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 

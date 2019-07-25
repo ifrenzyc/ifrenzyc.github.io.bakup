@@ -2,14 +2,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +29,33 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
@@ -30,64 +64,44 @@
 
 
 
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
 
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="logstash,zabbix," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="ITSYC's Blog" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。">
+  <meta name="description" content="参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。     &amp;lt;!&amp;#x2013;more&amp;#x2013;&amp;gt;      Logstash Pipeline 模型     由于 logstash-output-zabbix 插件不是">
 <meta name="keywords" content="logstash,zabbix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过 Zabbix 实现 Logstash 的监控">
 <meta property="og:url" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/index.html">
 <meta property="og:site_name" content="ITSYC&#39;s Blog">
-<meta property="og:description" content="参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。">
+<meta property="og:description" content="参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。     &amp;lt;!&amp;#x2013;more&amp;#x2013;&amp;gt;      Logstash Pipeline 模型     由于 logstash-output-zabbix 插件不是">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/logstash-pipeline.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/zabbix-host.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/zabbix-logstash-item.png">
@@ -95,43 +109,28 @@
 <meta property="og:updated_time" content="2017-07-07T16:04:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过 Zabbix 实现 Logstash 的监控">
-<meta name="twitter:description" content="参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。">
+<meta name="twitter:description" content="参考：监控方案    由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。     &amp;lt;!&amp;#x2013;more&amp;#x2013;&amp;gt;      Logstash Pipeline 模型     由于 logstash-output-zabbix 插件不是">
 <meta name="twitter:image" content="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/logstash-pipeline.png">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+  <link rel="alternate" href="/atom.xml" title="ITSYC's Blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
   };
 </script>
 
-
-
-  <link rel="canonical" href="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/"/>
-
-
-
-
-
+  
   <title>通过 Zabbix 实现 Logstash 的监控 | ITSYC's Blog</title>
   
 
@@ -142,9 +141,38 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -154,25 +182,28 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ITSYC's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Thoughts on life and code</p>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -180,65 +211,53 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
       
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -246,12 +265,16 @@
 
 
 
- </div>
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -264,20 +287,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yang Chuang">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/itsyc.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ITSYC's Blog">
     </span>
 
@@ -286,45 +311,62 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">通过 Zabbix 实现 Logstash 的监控</h1>
+          <h1 class="post-title" itemprop="name headline">通过 Zabbix 实现 Logstash 的监控
+
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
-            
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T10:12:00+08:00">
-                2017-06-27
-              </time>
-            
 
-            
+              
+                
+              
 
-            
-          </span>
+              <time title="Created: 2017-06-27 10:12:00" itemprop="dateCreated datePublished" datetime="2017-06-27T10:12:00+08:00">2017-06-27</time>
+            </span>
+          
 
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-07-08 00:04:48" itemprop="dateModified" datetime="2017-07-08T00:04:48+08:00">2017-07-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elastic-Stack/" itemprop="url" rel="index">
-                    <span itemprop="name">Elastic Stack</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Elastic-Stack/" itemprop="url" rel="index"><span itemprop="name">Elastic Stack</span></a></span>
 
                 
                 
@@ -334,11 +376,17 @@
 
           
             
+            
           
 
           
           
 
+          
+
+          
+
+          <br>
           
 
           
@@ -361,14 +409,19 @@
         
 
 <p>
-参考：<a href="https://kibana.logstash.es/content/logstash/performance/monitor/heartbeat.html" target="_blank" rel="external">监控方案</a>
+参考：<a href="https://kibana.logstash.es/content/logstash/performance/monitor/heartbeat.html" target="_blank" rel="noopener">监控方案</a>
 </p>
 
 <p>
 由于 Logstash 的 Pipeline 模式，通过 filter metrics 插件和 output zabbix 插件即可实现对 Logstash 处理 TPS 的监控。
 </p>
 
-<a id="more"></a>
+<div class="HTML">
+<p>
+&lt;!&#x2013;more&#x2013;&gt;
+</p>
+
+</div>
 
 <p>
 <b>Logstash Pipeline</b> 模型
@@ -376,11 +429,10 @@
 </p>
 
 <p>
-由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安装方式非常简单[参考：<a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="external">zabbix|Logstash</a> ]：
+由于 logstash-output-zabbix 插件不是 Logstash 的官方插件，因此使用前需要手动先安装该插件，安装方式非常简单[参考：<a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="noopener">zabbix|Logstash</a> ]：
 </p>
 
 <div class="org-src-container">
-
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ bin/logstash-plugin install logstash-output-zabbix</span><br></pre></td></tr></table></figure>
 </div>
 
@@ -388,8 +440,7 @@
 配置 Zabbix 的数据采集：
 </p>
 <ol class="org-ol">
-<li>配置新的主机名为 “logstash-indexer-1”
-</li>
+<li>配置新的主机名为 “logstash-indexer-1”</li>
 </ol>
 
 <div class="figure">
@@ -398,8 +449,7 @@
 </div>
 
 <ol class="org-ol">
-<li>配置采集项
-</li>
+<li>配置采集项</li>
 </ol>
 
 <div class="figure">
@@ -411,7 +461,6 @@
 修改 logstash 的配置文件，增加 metrics filter 和 zabbix output：
 </p>
 <div class="org-src-container">
-
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">input {</span><br><span class="line">  ...</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">filter {</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  metrics {</span><br><span class="line">    meter =&gt; <span class="string">"events"</span>  <span class="comment"># 统计每一个经过 filter 的事件</span></span><br><span class="line">    add_tag =&gt; <span class="string">"metric"</span></span><br><span class="line">    add_field =&gt; {<span class="string">"[@metadata][zabbix_key]"</span> =&gt; <span class="string">"logstash_events"</span>}  <span class="comment"># zabbix item 的 key，这个要和 zabbix 的配置一致</span></span><br><span class="line">    add_field =&gt; { <span class="string">"[@metadata][zabbix_host]"</span> =&gt; <span class="string">"logstash-indexer-1"</span> }  <span class="comment"># zabbix 写入的主机</span></span><br><span class="line">    flush_interval =&gt; <span class="number">10</span>  <span class="comment"># 每隔 10s 写一次</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">output {</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="string">"metric"</span> <span class="keyword">in</span> [tags] {</span><br><span class="line">    zabbix {</span><br><span class="line">      zabbix_server_host =&gt; <span class="string">"192.168.56.113"</span></span><br><span class="line">      zabbix_host =&gt; <span class="string">"[@metadata][zabbix_host]"</span></span><br><span class="line">      zabbix_key =&gt; <span class="string">"[@metadata][zabbix_key]"</span></span><br><span class="line">      zabbix_value =&gt; <span class="string">"[events][count]"</span>  <span class="comment"># [events][count] 是事件统计数据，还有其他字段内容，具体参考官网文档</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 <p>
@@ -424,34 +473,45 @@
 <img src="/2017/06/27/use-metrics-filter-monitoring-logstash-tps-with-zabbix/./logstash-tps-graph.png" alt="logstash-tps-graph.png">
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 参考内容</h2>
+<div id="outline-container-org6e0362a" class="outline-2">
+<h2 id="org6e0362a"><span class="section-number-2">1</span> 参考内容</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-metrics.html" target="_blank" rel="external">metrics</a>
-</li>
-<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="external">zabbix</a>
-</li>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-metrics.html" target="_blank" rel="noopener">metrics</a></li>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-zabbix.html#plugins-outputs-zabbix-zabbix_server_host" target="_blank" rel="noopener">zabbix</a></li>
 </ul>
 </div>
 </div>
 
-Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.2.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="noopener">hexo-renderer-org</a> with <a href="https://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a> 27.0.50 (<a href="https://orgmode.org" target="_blank" rel="noopener">Org</a> mode 9.2.4)
 
       
     </div>
+
+    
+
+    
+      
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
             <a href="/tags/logstash/" rel="tag"># logstash</a>
@@ -497,17 +557,10 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -527,7 +580,6 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -535,128 +587,138 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/itsyc.jpg"
-                alt="Yang Chuang" />
-            
-              <p class="site-author-name" itemprop="name">Yang Chuang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
 
-          <nav class="site-state motion-element">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">Yang Chuang</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
 
-          </nav>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
           
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ifrenzyc" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://twitter.com/ifrenzyc" target="_blank" title="Twitter">
-                    
-                      <i class="fa fa-fw fa-globe"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://douban.com/people/ifrenzyc" target="_blank" title="豆瓣">
-                    
-                      <i class="fa fa-fw fa-globe"></i>豆瓣</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://www.zhihu.com/people/ifrenzyc" target="_blank" title="知乎">
-                    
-                      <i class="fa fa-fw fa-globe"></i>知乎</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-
-          
-
         </div>
-      </section>
+      </div>
 
       
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sec-1"><span class="nav-number">1.</span> <span class="nav-text">1 参考内容</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org6e0362a"><span class="nav-number">1.</span> <span class="nav-text">1 参考内容</span></a></li></ol></div>
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
       
 
@@ -664,6 +726,7 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -672,17 +735,19 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Yang Chuang</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
@@ -690,12 +755,13 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
 
 
 
 
         
+
 
 
 
@@ -716,11 +782,15 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
     
 
+    
+
+    
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -734,12 +804,6 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-  
-
-
-
-
-
 
 
 
@@ -749,41 +813,30 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
   
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+
+
 
 
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -791,24 +844,21 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
+  
 
   
 
@@ -818,13 +868,7 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-	
 
-
-
-
-
-  
 
 
 
@@ -843,24 +887,34 @@ Last Updated 2017-07-08 Sat 00:04.<br>Render by <a href="https://github.com/Code
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
 
-  
-  
 
-  
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
 
-  
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 
